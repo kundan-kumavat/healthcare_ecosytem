@@ -15,6 +15,7 @@ from functools import lru_cache
 from scraping import scrape_doctors
 import time
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 app = Flask(__name__, template_folder='templates', static_folder='staticFolder')
@@ -44,7 +45,7 @@ class UserDocument(Document):
     profile_picture = FileField()
     friends = ListField(ReferenceField('self'))
     groups_joined = ListField(ReferenceField('CommunityGroup'))
-    registration_date = DateTimeField(default=datetime.datetime.utcnow)
+    registration_date = DateTimeField(default=datetime.utcnow)
 
 #user_responses
 # response_arr={
@@ -98,7 +99,7 @@ class MedicalData(Document):
     medical_reports = ListField(FileField())  # Medical reports (scanned files or PDFs)
     diagnosis = StringField()  # Diagnosis details
     medicines_prescribed = ListField(StringField())  # List of medicines
-    created_at = DateTimeField(default=datetime.datetime.utcnow)
+    created_at = DateTimeField(default=datetime.utcnow)
 
 # Community Group Schema
 class CommunityGroup(Document):
@@ -107,20 +108,20 @@ class CommunityGroup(Document):
     created_by = ReferenceField(UserDocument)
     group_members = ListField(ReferenceField(UserDocument))
     profile_picture = FileField()
-    created_at = DateTimeField(default=datetime.datetime.utcnow)
+    created_at = DateTimeField(default=datetime.utcnow)
 
 # Post Schema
 class Post(Document):
     content = StringField(required=True)
     posted_by = ReferenceField(UserDocument, required=True)
     posted_on_group = ReferenceField(CommunityGroup, required=True)
-    created_at = DateTimeField(default=datetime.datetime.utcnow)
+    created_at = DateTimeField(default=datetime.utcnow)
 
 class ChatBot(Document):
     owner = ReferenceField(UserDocument)
     user_input = StringField()
     output = StringField()
-    timestamp = DateTimeField(default=datetime.datetime.utcnow)
+    timestamp = DateTimeField(default=datetime.utcnow)
 
 class Appointment(Document):
     doctor_name = StringField(required=True)
