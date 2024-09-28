@@ -2,11 +2,22 @@ Sure! Below is an updated version of the README file with the new features like 
 
 ---
 
-# 🏥 HealthCare Appointment Booking System with AI Features
+# 🏥 HealthCare Ecosystem with AI Features
 
 Welcome to the **HealthCare Appointment Booking System**! 🚀 This enhanced web-based platform enables patients to book appointments with doctors easily, view 3D medical models, analyze reports, and receive AI-powered chatbot assistance for medical advice. 🎯
 
 ## 🌟 Features
+
+- **📋 Medical Record Management**:
+  - Patients can view and manage their medical history, current medication, disease details, and past surgeries.
+
+- **🩺 3D Modeling for Health Analysis**:
+  - Visualize patient-specific 3D anatomical models using advanced 3D file formats like `.gltf`.
+  - Enable doctors and patients to review 3D medical models for better diagnosis, surgical planning, or physical therapy guidance.
+
+- **🤖 AI-Powered Chatbot Integration**:
+  - Get instant assistance using an integrated chatbot that provides professional advice on medical conditions, potential treatments, and lifestyle improvements.
+  - The chatbot acts as a 24/7 virtual health advisor offering basic consultation and appointment scheduling assistance.
 
 - **📅 Full Calendar Integration**: 
   - A fully interactive calendar that allows users to click on specific dates to book appointments with their preferred doctors.
@@ -23,23 +34,12 @@ Welcome to the **HealthCare Appointment Booking System**! 🚀 This enhanced web
   - Securely store patients' medical history such as previous surgeries, medications, allergies, chronic conditions, and much more.
   - Smartwatch integration to sync health data, as well as medical reports upload support (e.g., PDFs or images).
 
-- **📋 Medical Record Management**:
-  - Patients can view and manage their medical history, current medication, disease details, and past surgeries.
-
 - **🔔 Appointment Reminders**:
   - After booking an appointment, it will automatically appear on the calendar as a reminder for the patient.
 
 - **📊 Medical Report Analysis**:
   - Automatically analyze uploaded medical reports like blood tests, X-rays, or prescriptions using AI-based tools.
   - Get insights, flag abnormalities, and track changes over time for better health monitoring.
-
-- **🩺 3D Modeling for Health Analysis**:
-  - Visualize patient-specific 3D anatomical models using advanced 3D file formats like `.gltf`.
-  - Enable doctors and patients to review 3D medical models for better diagnosis, surgical planning, or physical therapy guidance.
-
-- **🤖 AI-Powered Chatbot Integration**:
-  - Get instant assistance using an integrated chatbot that provides professional advice on medical conditions, potential treatments, and lifestyle improvements.
-  - The chatbot acts as a 24/7 virtual health advisor offering basic consultation and appointment scheduling assistance.
 
 - **📧 SMS and WhatsApp Notification Support** (Upcoming):
   - Send appointment confirmations and reminders via SMS or WhatsApp notifications.
