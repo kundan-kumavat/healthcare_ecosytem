@@ -198,7 +198,7 @@ def book_appointment():
         return redirect(url_for('reminder'))
 
 # Home route
-@app.route('/')
+@app.route('/dashboard')
 def index():
     return render_template('index.html', username=current_user.username)
 
@@ -206,6 +206,10 @@ def index():
 def upload():
     
     return render_template('report.html')
+
+@app.route('/')
+def home():
+    return render_template("home.html")
 
 # Logout route
 @app.route('/logout')
