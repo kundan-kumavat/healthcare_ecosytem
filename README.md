@@ -63,34 +63,6 @@ Welcome to the **HealthCare Appointment Booking System**! 🚀 This enhanced web
 4. Install 3D rendering tools (for GLTF/GLB file handling)
 5. Integrate AI chatbot API
 
-
-## 🚀 Key Functionalities
-
-### 1. 📅 Calendar View and Clickable Dates
-   - A full month view calendar is provided where patients can click on any date and book an appointment directly.
-
-### 2. 🧾 Appointment Booking Form
-   - A form with details like patient name, purpose of visit, doctor, date, time, and description pops out when a user clicks on a date. After submission, it sends the data to the backend and displays a reminder on that specific date.
-
-### 3. 🩺 3D Medical Models
-   - Doctors and patients can visualize 3D models related to specific medical conditions, providing a deeper understanding of surgeries or treatments.
-   - The application supports loading `.gltf` files for accurate 3D representation.
-
-### 4. 💻 Backend Integration
-   - Data is passed through a Flask backend, saving appointment details to MongoDB and syncing them with the calendar.
-
-### 5. 💾 Medical Data Storage
-   - The `MedicalData` model allows storage of a patient's full health history, including surgeries, chronic conditions, allergies, and more.
-
-### 6. 🤖 AI Chatbot Assistance
-   - Integrated AI chatbot offers real-time assistance for medical queries, appointment help, and health advice.
-
-### 7. 📊 Medical Report Analysis
-   - Users can upload medical reports that are analyzed using AI for abnormalities and insights. The results are displayed for the patient and doctor.
-
-### 8. 🔔 Reminder Notifications
-   - After booking, appointments are saved and displayed as reminders directly on the calendar for easy tracking.
-
 ## 💡 Upcoming Features
 
 - **📲 SMS/WhatsApp Integration** for sending automatic appointment reminders.
