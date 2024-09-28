@@ -13,30 +13,42 @@
                     <img src="" alt="profile-img">
                 </div>
             </div>
-    
+            
+            {% if medical_data %}
             <div class="user-info">
                 <div class="info-params">
-                    <span class="value">34</span>
+                    {% for ud in medical_data %}
+                    <span class="value">{{ ud['height'] }}</span>
                     <span class="param">Height</span>
                 </div>
+                {% endfor %}
                 <div class="info-params">
-                    <span class="value">34</span>
-                    <span class="param">Height</span>
+                    {% for ud in medical_data %}
+                    <span class="value">{{ ud['weight'] }}</span>
+                    <span class="param">Weight</span>
                 </div>
+                {% endfor %}
                 <div class="info-params">
-                    <span class="value">34</span>
-                    <span class="param">Height</span>
+                    {% for ud in medical_data %}
+                    <span class="value">{{ ud['age'] }}</span>
+                    <span class="param">Age</span>
                 </div>
+                {% endfor %}
+
                 <div class="info-params">
-                    <span class="value">34</span>
-                    <span class="param">Height</span>
+                    {% for ud in medical_data %}
+                    <span class="value">{{ ud['gender'] }}</span>
+                    <span class="param">Gender</span>
                 </div>
+                {% endfor %}
             </div>
     
             <div class="health-details">
                 <div class="card">
-                    <span class="measure">Heart Beat</span>
-                    <span class="measure-value">36.6</span>
+                    {% for ud in medical_data %}
+                    <span class="measure">Heart Rate</span>
+                    <span class="measure-value">{{ud['heart_rate']}}</span>
+                    {% endfor %}
                 </div>
                 <div class="card">
                     <span class="measure">Calories</span>
@@ -46,8 +58,13 @@
                     <span class="measure">Steps</span>
                     <span class="measure-value">36.6</span>
                 </div>
+                <div class="card">
+                    <span class="measure">BMI</span>
+                    <span class="measure-value"></span>
+                </div>
             </div>
-            
+            {% endif %}
+            {{ medical_data }}
         </div>
 
         <div class="model">

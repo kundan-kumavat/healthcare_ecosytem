@@ -22,6 +22,9 @@
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            dateClick:function(info){
+                    let selectedDate=info.datestr;
             }
         });
         calendar.render();

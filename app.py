@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from pymongo import MongoClient
@@ -199,8 +199,49 @@ def book_appointment():
 
 # Home route
 @app.route('/dashboard')
+@login_required
 def index():
-    return render_template('index.html', username=current_user.username)
+    # Query the medical data for the current logged-in user
+    medical_data_list = MedicalData.objects(user=current_user.id).all()  # Get all medical data for the current user
+
+    # Convert medical data into a list or array
+    medical_data_array = []
+    for data in medical_data_list:
+        medical_data_array.append({
+            'first_name': data.first_name,
+            'last_name': data.last_name,
+            'age': data.age,
+            'profession': data.profession,
+            'gender': data.gender,
+            'height': data.height,
+            'weight': data.weigth,
+            'previous_surgery_name': data.previous_surgery_name,
+            'previous_surgery_date': data.previous_surgery_date,
+            'complications_during_surgery': data.complications_during_surgery,
+            'anestesia_history': data.anestesia_history,
+            'chronic_conditions': data.chronic_conditions,
+            'current_medications': data.current_medications,
+            'known_allergies': data.known_allergies,
+            'disease': data.disease,
+            'drug_name': data.drug_name,
+            'medication_duration': data.medication_duration,
+            'addication_name': data.addication_name,
+            'addication_frequency': data.addication_frequency,
+            'addication_duration': data.addication_duration,
+            'heart_rate': data.heart_rate,
+            'blood_pressure': data.blood_pressure,
+            'sugar_level': data.sugar_level,
+            'diabetes_status': data.diabetes_status,
+            'smartwatch_data': data.smartwatch_data,
+            'medical_appointments': data.medical_appointments,
+            'medical_reports': data.medical_reports,
+            'diagnosis': data.diagnosis,
+            'medicines_prescribed': data.medicines_prescribed,
+            'created_at': data.created_at
+        })
+
+    # Pass the medical data array to the template
+    return render_template('index.html', username=current_user.username, medical_data=medical_data_array)
 
 @app.route('/upload', methods=["GET", "POST"])
 def upload():
@@ -210,6 +251,21 @@ def upload():
 @app.route('/')
 def home():
     return render_template("home.html")
+
+@app.route('/appointments')
+def get_appointments():
+    user_appointments = Appointment.objects(user_id=current_user.id)  # Fetch only the current user's appointments
+
+    # Format the appointments as events for FullCalendar
+    events = []
+    for appointment in user_appointments:
+        events.append({
+            'title': f'Appointment with {appointment.doctor_name}',
+            'start': appointment.appointment_date.strftime('%Y-%m-%d'),
+            'allDay': True  # Full-day event
+        })
+
+    return jsonify(events)
 
 # Logout route
 @app.route('/logout')
@@ -247,7 +303,7 @@ def profile():
         addication_duration = request.form['addication_duration']
 
         medical_data = MedicalData(
-            user=current_user.username,
+            user=current_user.id,
             first_name = first_name,
             last_name = last_name,
             age = age,
