@@ -129,7 +129,8 @@ class Appointment(Document):
     consultation_fee = StringField(required=True)
     clinic_name = StringField(required=True)
     experience = StringField(required=True)
-    user_id = ReferenceField(User)
+    user_id = ReferenceField(UserDocument)
+    appointment_date = DateTimeField(required=True)
 
 
 @login_manager.user_loader
@@ -179,6 +180,9 @@ def login():
 @app.route('/book_appointment', methods=['POST'])
 def book_appointment():
     if request.method == 'POST':
+        dateFiled = request.form['dateFiled']
+
+        date_filed = datetime.strptime(dateFiled, '%Y-%m-%d')
         appointment = Appointment(
             doctor_name=request.form['doctor_name'],
             specialization=request.form['specialization'],
@@ -186,7 +190,8 @@ def book_appointment():
             consultation_fee=request.form['consultation_fee'],
             clinic_name=request.form['clinic_name'],
             experience=request.form['experience'],
-            user_id=current_user.id  # Using current_user ID
+            appointment_date= dateFiled,
+            user_id=current_user.id, # Using current_user ID
         )
         appointment.save()
         return redirect(url_for('reminder'))
@@ -377,15 +382,12 @@ def chat():
             output=response
         
         chat_record = ChatBot(
-            owner=current_user.username,  # Stores current user's ID as owner
+            owner=current_user.id,  # Stores current user's ID as owner
             user_input=user_input,
             output=output
         )
 
         chat_record.save()
-
-    
-    
 
     return render_template('chat.html', user_input=user_input, output=output)
 
