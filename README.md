@@ -1,4 +1,3 @@
-Sure! Below is an updated version of the README file with the new features like **medical report analysis**, **3D modeling**, and **chatbot integration**:
 
 ---
 
@@ -84,9 +83,7 @@ https://drive.google.com/file/d/1_E1iT1RCIgp8PTobObhR3pezKQveVS3Z/view?usp=shari
 
 ---
 
-✨ **Thank you for using the HealthCare Appointment Booking System!** ✨  
+✨ **Thank you for using the HealthCare Ecosystem System!** ✨  
 Let's build a healthier world, one appointment at a time! 💙
 
 ---
-
-Feel free to adjust the screenshots, project name, and any other details according to your actual implementation! The new features make the project even more powerful and user-friendly!
