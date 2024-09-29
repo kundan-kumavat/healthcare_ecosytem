@@ -159,6 +159,10 @@ def register():
 
     return render_template('register.html')
 
+@app.route('/model')
+def model():
+    return render_template('model.html')
+
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():

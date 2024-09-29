@@ -47,31 +47,37 @@
                 <div class="card">
                     {% for ud in medical_data %}
                     <span class="measure">Heart Rate</span>
-                    <span class="measure-value">{{ud['heart_rate']}}</span>
+                    <span class="measure-value">92</span>
                     {% endfor %}
                 </div>
                 <div class="card">
+                    {% for ud in medical_data %}
                     <span class="measure">Calories</span>
-                    <span class="measure-value">36.6</span>
+                    <span class="measure-value">2000</span>
+                    {% endfor %}
                 </div>
                 <div class="card">
+                    {% for ud in medical_data %}
                     <span class="measure">Steps</span>
-                    <span class="measure-value">36.6</span>
+                    <span class="measure-value">92</span>
+                    {% endfor %}
                 </div>
                 <div class="card">
-                    <span class="measure">BMI</span>
-                    <span class="measure-value"></span>
+                    {% for ud in medical_data %}
+                    <span class="measure">Heart Rate</span>
+                    <span class="measure-value">{{ud['weight']}}</span>
+                    {% endfor %}
                 </div>
             </div>
             {% endif %}
-            {{ medical_data }}
+            
         </div>
 
-        <div class="model">
+        <!-- <div class="model">
                 
                 
             <spline-viewer url="https://prod.spline.design/InciWTmX49Eq1Pgx/scene.splinecode"></spline-viewer>
-        </div>
+        </div> -->
 
         <!-- <div id="model-section">
             <span>Human based model</span>
