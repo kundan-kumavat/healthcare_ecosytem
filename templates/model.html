@@ -11,7 +11,6 @@
     <!-- Modal to show body part information -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
             <h2>Body Part Information</h2>
             <p id="bodyPartInfo">Click on a body part for details.</p>
         </div>
@@ -24,12 +23,6 @@
     const splineViewer = document.querySelector('spline-viewer');
 
     // Define body part information based on object IDs in the Spline model
-    // const bodyParts = {
-    //     "436": "This is the head. It contains the brain, eyes, and ears.", // 
-    //     "heart": "This is the heart. It is responsible for pumping blood throughout the body.", //
-    //     "kidney": "This is the left arm. It includes muscles, bones, and nerves.", // Replace "LeftArmID" with actual ID
-    //     // Add more object IDs and descriptions here
-    // };
     const icons = [
         {
             name: "headIcon",
@@ -58,12 +51,9 @@
     // Modal logic
     const modal = document.getElementById("infoModal");
     const bodyPartInfo = document.getElementById("bodyPartInfo");
-    const closeBtn = document.querySelector('.close-btn');
+    
 
     // Close modal functionality
-    closeBtn.onclick = function () {
-        modal.style.display = "none";
-    }
 
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -98,15 +88,20 @@
         if (clickedIcon) {
             console.log('Clicked inside:', clickedIcon.name);
 
-            // Trigger the modal popup for this area
-            const modal = document.getElementById("infoModal");
             const bodyPartInfo = document.getElementById("bodyPartInfo");
-            bodyPartInfo.innerHTML = clickedIcon.content;  // Show the icon's specific content
 
-            // Show the modal
-            modal.style.display = "flex";
+            // Check if modal is already visible
+            if (modal.style.display === "flex") {
+                // Hide the modal if it's already open (toggle off)
+                modal.style.display = "none";
+            } else {
+                // Show the modal with information (toggle on)
+                bodyPartInfo.innerHTML = clickedIcon.content; // Show specific content
+                modal.style.display = "flex"; // Display the modal
+            }
         } else {
-            console.log('Clicked outside all icons');
+            // If clicked outside of the icon areas, close the modal
+            modal.style.display = "none";
         }
     });
 </script>

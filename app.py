@@ -175,10 +175,11 @@ def login():
         if user_data and bcrypt.check_password_hash(user_data['password'], password):
             user = User(user_id=str(user_data['_id']), username=user_data['username'])
             login_user(user)
-            flash('Login successful!', 'success')
+            flash('Login successful!', 'success')  # Flash success message
             return redirect(url_for('index'))
-
-        return redirect(url_for('login'))
+        else:
+            flash('Invalid credentials. Please try again.', 'error')  # Flash error message
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
@@ -200,6 +201,11 @@ def book_appointment():
         )
         appointment.save()
         return redirect(url_for('reminder'))
+    
+
+@app.route('/notification')
+def notification():
+    return render_template('notifiaction.html')
 
 # Home route
 @app.route('/dashboard')
