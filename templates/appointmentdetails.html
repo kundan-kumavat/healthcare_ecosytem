@@ -1,6 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="container w-full">
+    <div class="popup">
+        <section class="profile-container w-[500px]">
+            <header>Book Appointment</header>
+            <form action="#" class="form">
+              <div class="column">
+                <div class="input-box">
+                  <label>First Name</label>
+                  <input name="" type="text" placeholder="Enter First Name" required />
+                </div>
+                <div class="input-box">
+                  <label>Last Name</label>
+                  <input type="text" placeholder="Enter Last Name" required />
+                </div>
+              </div>
+              <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                  <div class="gender">
+                    <input type="radio" id="check-male" name="gender" checked />
+                    <label for="check-male">male</label>
+                  </div>
+                  <div class="gender">
+                    <input type="radio" id="check-female" name="gender" />
+                    <label for="check-female">Female</label>
+                  </div>
+                  <div class="gender">
+                    <input type="radio" id="check-other" name="gender" />
+                    <label for="check-other">prefer not to say</label>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="input-box">
+                  <label>Working Hours(Per day)</label>
+                  <input type="number" placeholder="Enter working hours" required />
+                </div>
+                <div class="input-box">
+                  <label>Height(in cm)</label>
+                  <input type="number" placeholder="Enter height" required />
+                </div>
+                <div class="input-box">
+                  <label>Weigth(in kg)</label>
+                  <input type="number" placeholder="Enter height" required />
+                </div>
+              </div>
+              <div class="mt-6 flex items-center justify-end gap-x-6">
+                <button type="button" class="text-md leading-6 text-gray-500 cancel">cancel</button>
+                <button type="submit"
+                  class="btn rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+              </div>
+            </form>
+          </section>
+    </div>
     <div class="section-1">
         <div class="appointment-search-container">
             <h3>Find Personalized Healthcare Solutions</h3>
@@ -21,30 +74,31 @@
             </button>
             </form>
         </div>
-
-       <table class="max-w-[90%] border-[1px] mt-[20px]">
-        <tr >
-            <th>Doctor Name</th>
-            <th>Doctor Specialization</th>
-            <th>Doctor Location</th>
-            <th>Doctor Fees</th>
-            <th>Doctor Clinic_name</th>
-            <th>Doctor Experience</th>
-            <th>Appointment</th>
-        </tr>
-        
+    </div>
+    <div className="w-[70%] overflow-x-scroll sm:overflow-auto rounded-md">
+        <table className="text-white w-full">
+            {% if doctor_data %}
+            <tr>
+                <th>Doctor Name</th>
+                <th>Doctor Specialization</th>
+                <th>Doctor Location</th>
+                <th>Doctor Fees</th>
+                <th>Doctor Clinic_name</th>
+                <th>Doctor Experience</th>
+                <th>Appointment</th>
+            </tr>
             {% for dc in doctor_data %}
             {% if(dc.name!="Not available") %}
             <tr>
                     
                     <td>{{dc.name}}</td>
-                        <td>{{dc.specialization}}</td>
-                        <td>{{dc.location}}</td>
+                    <td>{{dc.specialization}}</td>
+                    <td>{{dc.location}}</td>
                     <td>{{dc.consultation_fee}}</td>
-                <td>{{dc.clinic_name}}</td>
-            <td>{{dc.experience}}</td>
+                    <td>{{dc.clinic_name}}</td>
+                    <td>{{dc.experience}}</td>
             <td>
-                <form method="POST" action="/book_appointment">
+                <!-- <form method="POST" action="/book_appointment">
                     <input type="hidden" name="doctor_name" value="{{ dc.name }}">
                     <input type="hidden" name="specialization" value="{{ dc.specialization }}">
                     <input type="hidden" name="location" value="{{ dc.location }}">
@@ -53,21 +107,33 @@
                     <input type="hidden" name="experience" value="{{ dc.experience }}">
                     <input type="date" name="dateFiled" id="dateFiled">
                     <button type="submit" class="btn">Book</button>
-                </form>
+                </form> -->
+                <button class="book">Book</button>
             </td>
             </tr>
-                
                 {% endif %}
                 {% endfor %}
-            
-       </table>
-       </div>
+                {% endif %}
+        </table>
     </div>
-    
 </div>
+
 <script>
 
-const btn=document.querySelector('.btn')
+const btn=document.querySelector('.btn');
+const popup = document.querySelector('.popup');
+
+const bookBtn = document.querySelectorAll('.book')
+const cancelBtn = document.querySelector('.cancel')
+
+bookBtn.forEach((btn) => {
+    btn.addEventListener('click', (e)=>{
+        popup.style.display='flex'
+    })
+})
+cancelBtn.addEventListener('click', (e) => {
+    popup.style.display= 'none';
+})
 
 </script>
 

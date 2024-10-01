@@ -2,17 +2,20 @@
 {% block content %}
 
 <div class="container">
-    
-    <h1 class="text-base font-semibold">Medical Q&A Chatbot</h1>
-    <form class="w-[100%]" method="post" action="chat">
-        <label for="user_input " class="text-base font-semibold w-full">Enter your question:</label><br>
-        <input id="user_input" name="user_input" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></input><br><br> 
-        <input type="submit" class="btn" value="Submit">
-    </form>
-    <div class="response max-w-[80%]">
-        <h2 class="font-bold mb-[5px]">Response:</h2>
-        <div class="file-section">
-            <p>{{output}}</p>
+
+    <div class="chat-section">
+    <h1 class="font-semibold text-[25px]">Medical Q&A Chatbot</h1>
+        <div class="chat-input">
+            <form class="w-[100%]" method="post" action="chat">
+                <input id="user_input" name="user_input" placeholder="Enter your questions:" class="block w-full rounded-md border-0 py-0.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></input><br><br> 
+                <button type="submit" class="btn rounded-full w-[50px] h-[50px] flex items-center justify-center"><i class='bx bx-send icon text-[25px]'></i></button>
+            </form>
+        </div>
+        <div class="response max-w-[80%] mt-[50px]">
+            <h2 class="font-semibold mb-[5px]">Response:</h2>
+            <div class="file-section">
+                <p>{{output}}</p>
+            </div>
         </div>
     </div>
 </div>

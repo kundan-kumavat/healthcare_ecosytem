@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="main-container">
-  <div class="container">
+  <!-- <div class="container">
     <div class="file-section">
       <form action="/profile" method="POST">
         <div class="space-y-12">
@@ -173,10 +173,6 @@
             </div>
           </div>
 
-          <!-- <div  class="sm:col-span-1 flex items-center justify-center"></div>
-                      <button id="Surgery-btn" class="btn rounded-full w-[50px] h-[50px] text-[20px]">+</button>
-                    </div> -->
-
           <div class="border-b medication-form border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Current Medication</h2>
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -254,6 +250,96 @@
         </div>
       </form>
     </div>
+  </div> -->
+
+  <div class="container">
+    
+    <section class="profile-container">
+      <header>Personal Information</header>
+      <form action="#" class="form">
+        <div class="column">
+          <div class="input-box">
+            <label>First Name</label>
+            <input name="" type="text" placeholder="Enter First Name" required />
+          </div>
+          <div class="input-box">
+            <label>Last Name</label>
+            <input type="text" placeholder="Enter Last Name" required />
+          </div>
+        </div>
+        <div class="column">
+          <div class="input-box">
+            <label>Phone Number</label>
+            <input type="number" placeholder="Enter phone number" required />
+          </div>
+          <div class="input-box">
+            <label>Birth Date</label>
+            <input type="date" placeholder="Enter birth date" required />
+          </div>
+        </div>
+        <div class="input-box">
+          <label>Profession</label>
+          <input type="text" placeholder="Enter Your Profession" required />
+        </div>
+        <div class="gender-box">
+          <h3>Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="check-male" name="gender" checked />
+              <label for="check-male">male</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-female" name="gender" />
+              <label for="check-female">Female</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="check-other" name="gender" />
+              <label for="check-other">prefer not to say</label>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="input-box">
+            <label>Working Hours(Per day)</label>
+            <input type="number" placeholder="Enter working hours" required />
+          </div>
+          <div class="input-box">
+            <label>Height(in cm)</label>
+            <input type="number" placeholder="Enter height" required />
+          </div>
+          <div class="input-box">
+            <label>Weigth(in kg)</label>
+            <input type="number" placeholder="Enter height" required />
+          </div>
+        </div>
+        <div class="input-box address">
+          <label>Address</label>
+          <input type="text" placeholder="Enter street address" required />
+          <input type="text" placeholder="Enter street address line 2" required />
+          <div class="column">
+            <div class="select-box">
+              <select>
+                <option hidden>Country</option>
+                <option>America</option>
+                <option>Japan</option>
+                <option>India</option>
+                <option>Nepal</option>
+              </select>
+            </div>
+            <input type="text" placeholder="Enter your city" required />
+          </div>
+          <div class="column">
+            <input type="text" placeholder="Enter your region" required />
+            <input type="number" placeholder="Enter postal code" required />
+          </div>
+        </div>
+        <div class="mt-6 flex items-center justify-end gap-x-6">
+          <button type="button" class="text-md leading-6 text-gray-500">cancel</button>
+          <button type="submit"
+            class="btn rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+        </div>
+      </form>
+    </section>
   </div>
 </div>
 
