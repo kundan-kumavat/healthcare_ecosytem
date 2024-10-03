@@ -4,54 +4,37 @@
     <div class="popup">
         <section class="profile-container w-[500px]">
             <header>Book Appointment</header>
-            <form action="#" class="form">
+            <form action="/book_appointment" method="POST" class="form">
+
               <div class="column">
-                <div class="input-box">
-                  <label>First Name</label>
-                  <input name="" type="text" placeholder="Enter First Name" required />
-                </div>
-                <div class="input-box">
-                  <label>Last Name</label>
-                  <input type="text" placeholder="Enter Last Name" required />
-                </div>
+
               </div>
-              <div class="gender-box">
-                <h3>Gender</h3>
-                <div class="gender-option">
-                  <div class="gender">
-                    <input type="radio" id="check-male" name="gender" checked />
-                    <label for="check-male">male</label>
+              <!-- Calendar for Date Selection -->
+              <div class="input-box">
+                  <label for="dateFiled">Select Date</label>
+                  <input type="date" name="dateFiled" id="dateFiled" required>
+              </div>
+              <div>
+                  <label>Select Time Slot</label>
+                  <div class="time-slots-container">
+                      <div class="time-slot" data-time="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</div>
+                      <div class="time-slot" data-time="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</div>
+                      <div class="time-slot" data-time="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</div>
+                      <div class="time-slot" data-time="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</div>
                   </div>
-                  <div class="gender">
-                    <input type="radio" id="check-female" name="gender" />
-                    <label for="check-female">Female</label>
-                  </div>
-                  <div class="gender">
-                    <input type="radio" id="check-other" name="gender" />
-                    <label for="check-other">prefer not to say</label>
-                  </div>
-                </div>
+                  <input type="hidden" name="timeSlot" id="timeSlot" required>
               </div>
-              <div class="column">
-                <div class="input-box">
-                  <label>Working Hours(Per day)</label>
-                  <input type="number" placeholder="Enter working hours" required />
-                </div>
-                <div class="input-box">
-                  <label>Height(in cm)</label>
-                  <input type="number" placeholder="Enter height" required />
-                </div>
-                <div class="input-box">
-                  <label>Weigth(in kg)</label>
-                  <input type="number" placeholder="Enter height" required />
-                </div>
-              </div>
-              <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" class="text-md leading-6 text-gray-500 cancel">cancel</button>
-                <button type="submit"
-                  class="btn rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-              </div>
-            </form>
+              <!-- Hidden inputs for Doctor Details -->
+              <input type="hidden" name="doctor_name" id="doctor_name">
+              <input type="hidden" name="specialization" id="specialization">
+              <input type="hidden" name="location" id="location">
+              <input type="hidden" name="consultation_fee" id="consultation_fee">
+              <input type="hidden" name="clinic_name" id="clinic_name">
+              <input type="hidden" name="experience" id="experience">
+              <!-- Buttons -->
+              <button type="submit" class="btn">Confirm Appointment</button>
+              <button type="button" class="cancel btn">Cancel</button>
+          </form>
           </section>
     </div>
     <div class="section-1">
@@ -75,17 +58,19 @@
             </form>
         </div>
     </div>
-    <div className="w-[70%] overflow-x-scroll sm:overflow-auto rounded-md">
-        <table className="text-white w-full">
-            {% if doctor_data %}
+
+    {% if doctor_data %}
+    <div class="w-[100%] overflow-x-scroll sm:overflow-auto rounded-md table">
+      <header>List of Doctors</header>
+        <table class="w-full">
             <tr>
                 <th>Doctor Name</th>
-                <th>Doctor Specialization</th>
-                <th>Doctor Location</th>
-                <th>Doctor Fees</th>
-                <th>Doctor Clinic_name</th>
-                <th>Doctor Experience</th>
-                <th>Appointment</th>
+                <th>Specialization</th>
+                <th>Location</th>
+                <th>Fees</th>
+                <th>Clinic_name</th>
+                <th>Experience</th>
+                <th>Action</th>
             </tr>
             {% for dc in doctor_data %}
             {% if(dc.name!="Not available") %}
@@ -108,7 +93,7 @@
                     <input type="date" name="dateFiled" id="dateFiled">
                     <button type="submit" class="btn">Book</button>
                 </form> -->
-                <button class="book">Book</button>
+                <button class="book btn">Book</button>
             </td>
             </tr>
                 {% endif %}
@@ -118,23 +103,62 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 
-const btn=document.querySelector('.btn');
-const popup = document.querySelector('.popup');
+    const popup = document.querySelector('.popup');
+    const bookBtns = document.querySelectorAll('.book');
+    const cancelBtn = document.querySelector('.cancel');
+    const timeSlotDivs = document.querySelectorAll('.time-slot');
+    const timeSlotInput = document.getElementById('timeSlot');
 
-const bookBtn = document.querySelectorAll('.book')
-const cancelBtn = document.querySelector('.cancel')
+    // Show popup on book button click and fill doctor details
+    bookBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const row = e.target.closest('tr');
+            document.getElementById('doctor_name').value = row.querySelector('td:nth-child(1)').textContent;
+            document.getElementById('specialization').value = row.querySelector('td:nth-child(2)').textContent;
+            document.getElementById('location').value = row.querySelector('td:nth-child(3)').textContent;
+            document.getElementById('consultation_fee').value = row.querySelector('td:nth-child(4)').textContent;
+            document.getElementById('clinic_name').value = row.querySelector('td:nth-child(5)').textContent;
+            document.getElementById('experience').value = row.querySelector('td:nth-child(6)').textContent;
+            
+            popup.style.display = 'flex';
+        });
+    });
 
-bookBtn.forEach((btn) => {
-    btn.addEventListener('click', (e)=>{
-        popup.style.display='flex'
-    })
-})
-cancelBtn.addEventListener('click', (e) => {
-    popup.style.display= 'none';
-})
+    // Hide popup on cancel button click
+    cancelBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
 
+    // Handle time slot selection
+    timeSlotDivs.forEach((slot) => {
+        slot.addEventListener('click', (e) => {
+            timeSlotDivs.forEach(s => s.classList.remove('selected'));
+            slot.classList.add('selected');
+            timeSlotInput.value = slot.getAttribute('data-time');
+        });
+    });
 </script>
+
+<style>
+  .time-slots-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+  }
+  .time-slot {
+      padding: 5px 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+  }
+  .time-slot:hover, .time-slot.selected {
+      background-color: #2196F3;
+      color: white;
+  }
+</style>
 
 {% endblock %}

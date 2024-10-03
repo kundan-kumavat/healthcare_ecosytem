@@ -168,6 +168,10 @@ def upload():
 def home():
     return render_template("home.html")
 
+@app.route('/form')
+def form():
+    return render_template("form.html")
+
 @app.route('/appointments')
 @login_required
 def get_appointments():

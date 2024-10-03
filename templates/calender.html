@@ -3,18 +3,29 @@
 
 <div class="container">
     <div id="calendar"></div>
+    <div id="appointmentList" class="appointments-container"></div>
+</div>
 
-<div id="appointment-form"></div>
-    <h3>Book an Appointment</h3>
-    <select id="available-slots"></select>
-    <button id="book-appointment-btn">Book Appointment</button>
-</div>
-</div>
+<style>
+.appointments-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.appointment-item {
+    padding: 5px 0;
+    font-size: 14px;
+    color: #333;
+    background-color: aqua;
+    margin: 10px;
+}
+</style>
 
 <script>
     $(document).ready(function () {
         // Initialize FullCalendar
         let calendarEl = document.getElementById('calendar');
+        let appointmentListEl = document.getElementById('appointmentList');
         let calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             events: '/appointments',
@@ -24,7 +35,26 @@
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             dateClick:function(info){
-                    let selectedDate=info.datestr;
+                let appointments = $(info.dayEl).find('.fc-event-title').map(function () {
+                    return $(this).text();
+                }).get();
+                console.log(info)
+                appointmentListEl.innerHTML = '';
+
+            // If there are appointments, display them in the div
+            if (appointments.length > 0) {
+                appointments.forEach(function (appointment) {
+                    let appointmentDiv = document.createElement('div');
+                    appointmentDiv.textContent = appointment;
+                    appointmentDiv.classList.add('appointment-item'); // Add class for styling if needed
+                    appointmentListEl.appendChild(appointmentDiv);
+                });
+            } else {
+                // If no appointments found for the selected date
+                let noAppointmentDiv = document.createElement('div');
+                noAppointmentDiv.textContent = 'No appointments for this date.';
+                appointmentListEl.appendChild(noAppointmentDiv);
+            }
             }
         });
         calendar.render();
