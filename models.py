@@ -11,6 +11,44 @@ class UserDocument(Document):
     groups_joined = ListField(ReferenceField('CommunityGroup'))
     registration_date = DateTimeField(default=datetime.utcnow)
 
+class PersonalData(Document):
+    user=ReferenceField(UserDocument, required=True)
+    first_name = StringField()
+    last_name = StringField()
+    date_of_birth = DateTimeField()
+    phone_no = StringField()
+    profession = StringField()
+    gender = StringField()
+    working_hours = StringField()
+    height = StringField()
+    weigth = StringField()
+    address = StringField()
+    country = StringField()
+    city = StringField()
+    region = StringField()
+    postal_code = StringField()
+
+class PastSurgeryInfo(Document):
+    user = ReferenceField(UserDocument, required=True)
+    pervious_surgery_name = StringField()
+    pervious_surgery_date = DateTimeField()
+    compliactions = StringField()
+    anstesia_history = StringField()
+
+class CurrentMedication(Document):
+    user = ReferenceField(UserDocument, required=True)
+    disease_name = StringField()
+    current_medicines  = StringField()
+    current_medication_duration = StringField()
+    known_allergies = StringField()
+
+class Addication(Document):
+    user = ReferenceField(UserDocument, required=True)
+    addication_name = StringField()
+    frequency = StringField()
+    addication_duration = StringField()
+
+
 # Medical Data Collection Schema
 class MedicalData(Document):
     user = ReferenceField(UserDocument, required=True)

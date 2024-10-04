@@ -3,23 +3,14 @@
 
 <div class="container">
     <div id="calendar"></div>
-    <div id="appointmentList" class="appointments-container"></div>
+    <div class="mt-[20px]">
+        <h1 class="text-[20px] font-semibold">
+            All Appointment Lists
+        </h1>
+        <div id="appointmentList" class="appointments-container">
+        </div>
+    </div>
 </div>
-
-<style>
-.appointments-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.appointment-item {
-    padding: 5px 0;
-    font-size: 14px;
-    color: #333;
-    background-color: aqua;
-    margin: 10px;
-}
-</style>
 
 <script>
     $(document).ready(function () {

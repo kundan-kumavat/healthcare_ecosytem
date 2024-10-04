@@ -27,6 +27,89 @@
     --tran-05: all 0.5s ease;
 }
 
+/* Style for the left-side buttons (prev, next, today) */
+.fc .fc-prev-button, .fc .fc-next-button, .fc .fc-today-button {
+  background-color: #007bff;  /* Change this to your desired background color */
+  color: white;
+  border: none;               /* Remove border */
+  border-radius: 4px;         /* Optional: Add rounded corners */
+}
+
+.fc .fc-prev-button:hover, .fc .fc-next-button:hover, .fc .fc-today-button:hover {
+  background-color: #0056b3;  /* Change this to your desired hover color */
+}
+
+/* Style for the right-side view buttons (month, week, day) */
+.fc .fc-button-group .fc-button {
+  background-color: #343a40;  /* Change this to your desired background color */
+  color: white;               /* Button text color */
+  border: none;               /* Remove border */
+  border-radius: 4px;         /* Optional: Add rounded corners */
+}
+
+.fc .fc-button-group .fc-button:hover {
+  background-color: #23272b;  /* Change this to your desired hover color */
+}
+
+/* Optional: Style for the active view button (currently selected view) */
+.fc .fc-button-group .fc-button.fc-button-active {
+  background-color: #0062cc;  /* Change this to your desired active button color */
+  color: white;               /* Active button text color */
+}
+
+
+/* Style the calendar header */
+.fc .fc-toolbar { /* Header background */
+  color: var(--primary-color);              /* Header text color */
+}
+
+/* Change the background of specific days */
+.fc .fc-daygrid-day {
+  background-color: #f7f7f7; /* Default day background */
+}
+
+.fc .fc-day-today {
+  background-color: #fff3cd; /* Highlight current day */
+}
+
+/* Change colors for events */
+.fc-event, .fc-event-dot {
+  background-color: var(--primary-color) !important; /* Event background color */
+  border-color: #2196F3 !important;     /* Event border color */
+}
+
+/* Event text color */
+.fc-event-title {
+  color: #ffffff !important; /* Event title text color */
+}
+
+/* Hover state for events */
+.fc-event:hover {
+  background-color: #1976D2 !important; /* Darker shade on hover */
+}
+
+/* Change the background of weekends */
+.fc .fc-day-sun, .fc .fc-day-sat {
+  background-color: #f2f2f2;
+}
+
+.appointments-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 20px;
+}
+
+.appointment-item {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: var(--sidebar-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  margin: 10px;
+}
+
 body.dark{
     --body-color: #18191a;
     --sidebar-color: #242526;
@@ -310,9 +393,35 @@ body.dark .switch::before{
 .home .main-container{
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
+}
+
+.chart-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+
+.chartDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--sidebar-color);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.chartDiv h1{
+  font-size: 20px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 0.1px #c1c1c1 solid;
 }
 
 .home .container{
@@ -381,12 +490,12 @@ body.dark .switch::before{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
-    width: 200px;
-    height: 200px;
-    background: var(--primary-color-light);
-    border-radius: 20px;
+    padding: 15px 20px;
+    background: var(--sidebar-color);
+    border-radius: 15px;
     transition: var(--tran-04);
+    color: var(--text-color);
+    width: 270px;
 }
 
 .home .container .health-details .card:hover{
@@ -1130,11 +1239,12 @@ th, td {
 }
 
 .wrapper{
-  margin-bottom: 20px;
+  margin-top: -50px;
+  padding-bottom: 40px;
 }
 
 .wrapper .header{
-	margin-bottom: 35px;
+	margin-bottom: 20px;
 	display: flex;
 	justify-content: center;
 }
