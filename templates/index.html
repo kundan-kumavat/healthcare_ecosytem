@@ -14,29 +14,29 @@
                 </div>
             </div>
             
-            {% if medical_data %}
+            {% if personal_data %}
             <div class="user-info">
                 <div class="info-params">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="value">{{ ud['height'] }}</span>
                     <span class="param">Height</span>
                 </div>
                 {% endfor %}
                 <div class="info-params">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="value">{{ ud['weight'] }}</span>
                     <span class="param">Weight</span>
                 </div>
                 {% endfor %}
                 <div class="info-params">
-                    {% for ud in medical_data %}
-                    <span class="value">{{ ud['age'] }}</span>
+                    {% for ud in personal_data %}
+                    <span class="value">22</span>
                     <span class="param">Age</span>
                 </div>
                 {% endfor %}
 
                 <div class="info-params">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="value">{{ ud['gender'] }}</span>
                     <span class="param">Gender</span>
                 </div>
@@ -45,25 +45,25 @@
     
             <div class="health-details">
                 <div class="card">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="measure">Heart Rate</span>
                     <span class="measure-value">92</span>
                     {% endfor %}
                 </div>
                 <div class="card">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="measure">Calories</span>
                     <span class="measure-value">2000</span>
                     {% endfor %}
                 </div>
                 <div class="card">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="measure">Steps</span>
                     <span class="measure-value">1000</span>
                     {% endfor %}
                 </div>
                 <div class="card">
-                    {% for ud in medical_data %}
+                    {% for ud in personal_data %}
                     <span class="measure">Blood Pressure</span>
                     <span class="measure-value">150</span>
                     {% endfor %}

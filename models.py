@@ -23,6 +23,7 @@ class PersonalData(Document):
     height = StringField()
     weigth = StringField()
     address = StringField()
+    address_2 = StringField()
     country = StringField()
     city = StringField()
     region = StringField()

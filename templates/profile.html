@@ -283,69 +283,63 @@
         <div class="form_1 data_info">
           <section class="profile-container">
             <header>Personal Information</header>
-            <form action="#" class="form">
+            <form action="/personalData" class="form" method="POST">
               <div class="column">
                 <div class="input-box">
                   <label>First Name</label>
-                  <input name="" type="text" placeholder="Enter First Name" required />
+                  <input name="first_name" id="first_name" type="text" placeholder="Enter First Name" required />
                 </div>
                 <div class="input-box">
                   <label>Last Name</label>
-                  <input type="text" placeholder="Enter Last Name" required />
+                  <input name="last_name" id="last_name" type="text" placeholder="Enter Last Name" required />
                 </div>
               </div>
               <div class="column">
                 <div class="input-box">
                   <label>Phone Number</label>
-                  <input type="number" placeholder="Enter phone number" required />
+                  <input name="phone_no" id="phone_no" type="number" placeholder="Enter phone number" required />
                 </div>
                 <div class="input-box">
                   <label>Birth Date</label>
-                  <input type="date" placeholder="Enter birth date" required />
+                  <input name="date_of_birth" id="date_of_birth" type="date" placeholder="Enter birth date" required />
                 </div>
               </div>
               <div class="input-box">
                 <label>Profession</label>
-                <input type="text" placeholder="Enter Your Profession" required />
+                <input name="profession" id="profession" type="text" placeholder="Enter Your Profession" required />
               </div>
               <div class="gender-box">
                 <h3>Gender</h3>
                 <div class="gender-option">
-                  <div class="gender">
-                    <input type="radio" id="check-male" name="gender" checked />
-                    <label for="check-male">male</label>
-                  </div>
-                  <div class="gender">
-                    <input type="radio" id="check-female" name="gender" />
-                    <label for="check-female">Female</label>
-                  </div>
-                  <div class="gender">
-                    <input type="radio" id="check-other" name="gender" />
-                    <label for="check-other">prefer not to say</label>
-                  </div>
+                  <select name="gender" id="gender">
+                    <option value="">select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                  </select>
                 </div>
               </div>
               <div class="column">
                 <div class="input-box">
                   <label>Working Hours(Per day)</label>
-                  <input type="number" placeholder="Enter working hours" required />
+                  <input name="working_hours" id="working_hours" type="number" placeholder="Enter working hours" required />
                 </div>
                 <div class="input-box">
                   <label>Height(in cm)</label>
-                  <input type="number" placeholder="Enter height" required />
+                  <input name="height" id="height" type="number" placeholder="Enter height" required />
                 </div>
                 <div class="input-box">
                   <label>Weigth(in kg)</label>
-                  <input type="number" placeholder="Enter height" required />
+                  <input name="weigth" id="weigth" type="number" placeholder="Enter height" required />
                 </div>
               </div>
               <div class="input-box address">
                 <label>Address</label>
-                <input type="text" placeholder="Enter street address" required />
-                <input type="text" placeholder="Enter street address line 2" required />
+                <input name="address" id="address" type="text" placeholder="Enter street address" required />
+                <input name="address_2" id="address_2" type="text" placeholder="Enter street address line 2" required />
                 <div class="column">
                   <div class="select-box">
-                    <select>
+                    <select name="country" id="country">
                       <option hidden>Country</option>
                       <option>America</option>
                       <option>Japan</option>
@@ -353,11 +347,11 @@
                       <option>Nepal</option>
                     </select>
                   </div>
-                  <input type="text" placeholder="Enter your city" required />
+                  <input name="city" id="city" type="text" placeholder="Enter your city" required />
                 </div>
                 <div class="column">
-                  <input type="text" placeholder="Enter your region" required />
-                  <input type="number" placeholder="Enter postal code" required />
+                  <input name="region" id="region" type="text" placeholder="Enter your region" required />
+                  <input name="postal_code" id="postal_code" type="number" placeholder="Enter postal code" required />
                 </div>
               </div>
               <div class="mt-6 flex items-center justify-end gap-x-6">
@@ -371,24 +365,24 @@
         <div class="form_2 data_info" style="display: none;">
           <section class="profile-container">
             <header>Past surgical/medical history</header>
-            <form action="#" class="form">
+            <form action="/pastSurgicalData" class="form">
               <div class="input-box">
                 <label>Previous Surgery Name</label>
-                <input name="" type="text" placeholder="Enter Previous Surgery Name" required />
+                <input name="pervious_surgery_name" id="pervious_surgery_name" type="text" placeholder="Enter Previous Surgery Name" required />
               </div>
               <div class="column">
                 <div class="input-box">
                   <label>Previous surgery date</label>
-                  <input type="date" placeholder="Enter Surgery Date" required />
+                  <input name="pervious_surgery_date" id="pervious_surgery_date" type="date" placeholder="Enter Surgery Date" required />
                 </div>
                 <div class="input-box">
                   <label>Complications During Surgery(if any:)</label>
-                  <input type="text" placeholder="Enter Complications During Surgery" required />
+                  <input name="compliactions" id="compliactions" type="text" placeholder="Enter Complications During Surgery" required />
                 </div>
               </div>
               <div class="input-box">
                 <label>Anstesia History</label>
-                <select id="anestesia_history" name="anestesia_history" autocomplete="anestesia_history"
+                <select name="anstesia_history" id="anstesia_history" autocomplete="anestesia_history"
                   class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                   <option value="none">None</option>
                   <option value="had_before_no_complications">Had anesthesia before (no complications)</option>
@@ -410,24 +404,24 @@
         <div class="form_3 data_info" style="display: none;">
           <section class="profile-container">
             <header>Current Medication</header>
-            <form action="#" class="form">
+            <form action="/currentMedication" class="form" method="POST">
               <div class="input-box">
                 <label>Disease Name:</label>
-                <input name="text" type="text" placeholder="Enter Dieases Name" required />
+                <input name="disease_name" id="disease_name" type="text" placeholder="Enter Dieases Name" required />
               </div>
               <div class="column">
                 <div class="input-box">
                   <label>Current Medicines:</label>
-                  <input type="text" placeholder="Enter Medicine Names" required />
+                  <input name="current_medicines" id="current_medicines" type="text" placeholder="Enter Medicine Names" required />
                 </div>
                 <div class="input-box">
                   <label>Duration(in weeks):</label>
-                  <input type="number" placeholder="Enter Duration" required />
+                  <input name="current_medication_duration" id="current_medication_duration" type="number" placeholder="Enter Duration" required />
                 </div>
               </div>
               <div class="input-box">
                 <label>Known Allergies</label>
-                <select id="anestesia_history" name="anestesia_history" autocomplete="anestesia_history"
+                <select name="known_allergies" id="known_allergies" autocomplete="anestesia_history"
                   class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                   <option value="none">None</option>
                   <option value="had_before_no_complications">Fragrance</option>
@@ -449,19 +443,19 @@
         <div class="form_4 data_info" style="display: none;">
           <section class="profile-container">
             <header>Addications</header>
-            <form action="#" class="form">
+            <form action="/addication" class="form" method="POST">
               <div class="input-box">
                 <label>Addication Name:</label>
-                <input name="text" type="text" placeholder="Enter Addication Name" required />
+                <input name="addication_name" id="addication_name" type="text" placeholder="Enter Addication Name" required />
               </div>
               <div class="column">
                 <div class="input-box">
                   <label>Frequency(in weeks):</label>
-                  <input type="number" placeholder="Enter Frequency" required />
+                  <input name="frequency" id="frequency" type="number" placeholder="Enter Frequency" required />
                 </div>
                 <div class="input-box">
                   <label>Duration(in weeks):</label>
-                  <input type="number" placeholder="Enter Duration" required />
+                  <input name="addication_duration" id="addication_duration" type="number" placeholder="Enter Duration" required />
                 </div>
               </div>
               <div class="input-box">

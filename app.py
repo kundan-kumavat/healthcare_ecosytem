@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from mongoengine import connect
 from bson.objectid import ObjectId
-from models import UserDocument, MedicalData, Appointment, Post, CommunityGroup, ChatBot
+from models import UserDocument, MedicalData, Appointment, Post, CommunityGroup, ChatBot, PersonalData, PastSurgeryInfo, CurrentMedication, Addication
 import datetime
 from scraping import scrape_doctors
 from datetime import datetime
@@ -117,46 +117,22 @@ def notification():
 @login_required
 def index():
     # Query the medical data for the current logged-in user
-    medical_data_list = MedicalData.objects(user=current_user.id).all()  # Get all medical data for the current user
+    personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
 
     # Convert medical data into a list or array
-    medical_data_array = []
-    for data in medical_data_list:
-        medical_data_array.append({
+    personal_data_array = []
+    for data in personal_data_list:
+        personal_data_array.append({
             'first_name': data.first_name,
             'last_name': data.last_name,
-            'age': data.age,
             'profession': data.profession,
             'gender': data.gender,
             'height': data.height,
             'weight': data.weigth,
-            'previous_surgery_name': data.previous_surgery_name,
-            'previous_surgery_date': data.previous_surgery_date,
-            'complications_during_surgery': data.complications_during_surgery,
-            'anestesia_history': data.anestesia_history,
-            'chronic_conditions': data.chronic_conditions,
-            'current_medications': data.current_medications,
-            'known_allergies': data.known_allergies,
-            'disease': data.disease,
-            'drug_name': data.drug_name,
-            'medication_duration': data.medication_duration,
-            'addication_name': data.addication_name,
-            'addication_frequency': data.addication_frequency,
-            'addication_duration': data.addication_duration,
-            'heart_rate': data.heart_rate,
-            'blood_pressure': data.blood_pressure,
-            'sugar_level': data.sugar_level,
-            'diabetes_status': data.diabetes_status,
-            'smartwatch_data': data.smartwatch_data,
-            'medical_appointments': data.medical_appointments,
-            'medical_reports': data.medical_reports,
-            'diagnosis': data.diagnosis,
-            'medicines_prescribed': data.medicines_prescribed,
-            'created_at': data.created_at
         })
 
     # Pass the medical data array to the template
-    return render_template('index.html', username=current_user.username, medical_data=medical_data_array)
+    return render_template('index.html', username=current_user.username, personal_data=personal_data_array)
 
 @app.route('/upload', methods=["GET", "POST"])
 @login_required
@@ -199,60 +175,20 @@ def logout():
 @app.route('/profile', methods=["GET", "POST"])
 @login_required
 def profile():
+    # Query the medical data for the current logged-in user
+    personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
 
-    if request.method == 'POST':
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        age = request.form['age']
-        profession = request.form['profession']
-        working_hours = request.form['working_hours']
-        gender = request.form['gender']
-        height = request.form['height']
-        weigth = request.form['weigth']
-        previous_surgery_name = request.form['previous_surgery_name']
-        previous_surgery_date = request.form['previous_surgery_date']
-        complications_during_surgery = request.form['complications_during_surgery']
-        anestesia_history = request.form['anestesia_history']
-        chronic_conditions = request.form['chronic_conditions']
-        current_medications = request.form['current_medications']
-        known_allergies = request.form['known_allergies']
-        disease = request.form['disease']
-        drug_name = request.form['drug_name']
-        medication_duration = request.form['medication_duration']
-        addication_name = request.form['addication_name']
-        addication_frequency = request.form['addication_frequency']
-        addication_duration = request.form['addication_duration']
-
-        medical_data = MedicalData(
-            user=current_user.id,
-            first_name = first_name,
-            last_name = last_name,
-            age = age,
-            profession=profession,
-            working_hours=working_hours,
-            gender=gender,
-            height=height ,
-            weigth=weigth,
-            previous_surgery_name=previous_surgery_name,
-            previous_surgery_date=previous_surgery_date,
-            complications_during_surgery=complications_during_surgery,
-            anestesia_history=anestesia_history,
-            chronic_conditions=chronic_conditions,
-            current_medications=current_medications,
-            known_allergies=known_allergies,
-            disease=disease,
-            drug_name=drug_name,
-            medication_duration=medication_duration,
-            addication_name=addication_name,
-            addication_frequency=addication_frequency,
-            addication_duration=addication_duration
-        )
-        medical_data.save()
-        flash('Medical data added successfully', 'success')
-        print('#####')
-        print(current_user)
-        return redirect(url_for('index', username=current_user.username))
-    
+    # Convert medical data into a list or array
+    personal_data_array = []
+    for data in personal_data_list:
+        personal_data_array.append({
+            'first_name': data.first_name,
+            'last_name': data.last_name,
+            'profession': data.profession,
+            'gender': data.gender,
+            'height': data.height,
+            'weight': data.weigth,
+        })
     return render_template('profile.html')
 
 @app.route('/calender')
@@ -300,6 +236,105 @@ def reminder():
         print(doctor_data)
 
     return render_template('appointmentdetails.html', doctor_data=doctor_data)
+
+@app.route('/personalData', methods=['GET', 'POST'])
+def personalData():
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        phone_no = request.form['phone_no']
+        date_of_birth = request.form['date_of_birth']
+        profession = request.form['profession']
+        gender = request.form['gender']
+        working_hours = request.form['working_hours']
+        height = request.form['height']
+        weigth = request.form['weigth']
+        address = request.form['address']
+        address_2 = request.form['address_2']
+        city = request.form['city']
+        region = request.form['region']
+        postal_code = request.form['postal_code']
+
+        personal_data = PersonalData(
+            user=current_user.id,
+            first_name = first_name,
+            last_name = last_name,
+            phone_no = phone_no,
+            date_of_birth = date_of_birth,
+            profession = profession,
+            gender = gender,
+            working_hours = working_hours,
+            height = height,
+            weigth = weigth,
+            address = address,
+            address_2 = address_2,
+            city = city,
+            region =  region,
+            postal_code =  postal_code,
+        )
+        personal_data.save()
+        flash("Personal Data saved successfully", 'success')
+        return redirect(url_for('profile'))
+    
+    return render_template('profile.html')
+
+@app.route('/pastSurgicalData', methods=['GET', 'POST'])
+def pastSurgicalData():
+    if request.method == 'POST':
+        pervious_surgery_name = request.form['pervious_surgery_name']
+        pervious_surgery_date = request.form['pervious_surgery_date']
+        compliactions = request.form['compliactions']
+        anstesia_history = request.form['anstesia_history']
+
+        past_surgical_data = PastSurgeryInfo(
+            user=current_user.id,
+            pervious_surgery_name = pervious_surgery_name,
+            pervious_surgery_date  = pervious_surgery_date ,
+            compliactions = compliactions,
+            anstesia_history = anstesia_history,
+        )
+        past_surgical_data.save()
+        flash("Personal Data saved successfully", 'success')
+    
+    return render_template('profile.html')
+
+@app.route('/currentMedication', methods=['GET', 'POST'])
+def currentMedication():
+    if request.method == 'POST':
+        disease_name = request.form['disease_name']
+        current_medicines = request.form['current_medicines']
+        current_medication_duration = request.form['current_medication_duration']
+        known_allergies = request.form['known_allergies']
+
+        current_medication_data = CurrentMedication(
+            user=current_user.id,
+            disease_name = disease_name,
+            current_medicines  = current_medicines ,
+            current_medication_duration = current_medication_duration,
+            known_allergies = known_allergies,
+        )
+        current_medication_data.save()
+        flash("Personal Data saved successfully", 'success')
+    
+    return render_template('profile.html')
+
+@app.route('/addication', methods=['GET', 'POST'])
+def addication():
+    if request.method == 'POST':
+        addication_name = request.form['addication_name']
+        frequency = request.form['frequency']
+        addication_duration = request.form['addication_duration']
+
+        addication_data = Addication(
+            user=current_user.id,
+            addication_name = addication_name,
+            frequency  = frequency ,
+            addication_duration = addication_duration,
+        )
+        addication_data.save()
+        flash("Personal Data saved successfully", 'success')
+    
+    return render_template('profile.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
