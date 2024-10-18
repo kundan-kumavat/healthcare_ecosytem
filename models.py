@@ -115,4 +115,5 @@ class Appointment(Document):
     clinic_name = StringField(required=True)
     experience = StringField(required=True)
     user_id = ReferenceField(UserDocument)
+    time_slot = StringField(required=True)
     appointment_date = DateTimeField(required=True)

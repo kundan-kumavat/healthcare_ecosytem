@@ -15,12 +15,15 @@
                   <input type="date" name="dateFiled" id="dateFiled" required>
               </div>
               <div>
-                  <label>Select Time Slot</label>
+                  <label class="mt-[10px]">Select Time Slot</label>
                   <div class="time-slots-container">
-                      <div class="time-slot" data-time="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</div>
-                      <div class="time-slot" data-time="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</div>
-                      <div class="time-slot" data-time="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</div>
-                      <div class="time-slot" data-time="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</div>
+                      <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                      <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                      <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                      <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
+                      <div class="time-slot" data-time="01:00 PM">01:00 PM</div>
+                      <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                      <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
                   </div>
                   <input type="hidden" name="timeSlot" id="timeSlot" required>
               </div>
@@ -147,6 +150,9 @@
       display: flex;
       gap: 10px;
       margin-top: 10px;
+      margin-bottom: 20px;
+      flex-direction: row;
+      flex-wrap: wrap;
   }
   .time-slot {
       padding: 5px 10px;
@@ -156,7 +162,7 @@
       transition: background-color 0.2s;
   }
   .time-slot:hover, .time-slot.selected {
-      background-color: #2196F3;
+      background-color: #695cfe;
       color: white;
   }
 </style>

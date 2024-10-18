@@ -13,10 +13,22 @@ const navLinks = document.getElementsByClassName('nav-link')
 
 function isActive(){
     const current = this
+    current.classList.add('active')
+    const attri = current.getAttribute('url_for');
+    localStorage.setItem('activeLink', attri);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const localLink = localStorage.getItem('activeLink');
+
     const activeLink = body.querySelector('.nav-link.active')
     activeLink.classList.remove('active')
-    current.classList.add('active')
-}
+
+    if(activeLink){
+        const current = document.querySelector(`.nav-link[url_for=${localLink}]`)
+        current.classList.add('active');
+    }
+})
 
 toggle.addEventListener('click', () => {
     sidebar.classList.toggle('close')

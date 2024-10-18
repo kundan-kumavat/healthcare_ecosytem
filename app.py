@@ -92,6 +92,7 @@ def login():
 def book_appointment():
     if request.method == 'POST':
         dateFiled = request.form['dateFiled']
+        timeFiled = request.form['timeSlot']
 
         date_filed = datetime.strptime(dateFiled, '%Y-%m-%d')
         appointment = Appointment(
@@ -102,6 +103,7 @@ def book_appointment():
             clinic_name=request.form['clinic_name'],
             experience=request.form['experience'],
             appointment_date= dateFiled,
+            time_slot = timeFiled,
             user_id=current_user.id, # Using current_user ID
         )
         appointment.save()
