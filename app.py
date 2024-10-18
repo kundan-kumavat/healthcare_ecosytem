@@ -190,8 +190,17 @@ def profile():
             'gender': data.gender,
             'height': data.height,
             'weight': data.weigth,
+            'dob': data.date_of_birth,
+            'phone_no': data.phone_no,
+            'working_hours': data.working_hours,
+            'address': data.address,
+            'address_2': data.address_2,
+            'country': data.country,
+            'city': data.city,
+            'region': data.region,
+            'postal_code': data.postal_code
         })
-    return render_template('profile.html')
+    return render_template('profile.html', personal_data_array=personal_data_array)
 
 @app.route('/calender')
 @login_required
