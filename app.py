@@ -9,10 +9,18 @@ from scraping import scrape_doctors
 from datetime import datetime
 from chatbot import chatbot
 from config import SECRET_KEY, connect, db, users_collection, medical_collection, client
-
+import os
+from cbc_daigonse import daigonse
 
 app = Flask(__name__, template_folder='templates', static_folder='staticFolder')
 app.secret_key = SECRET_KEY
+
+UPLOAD_FOLDER = 'staticFolder/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 # Set up bcrypt for password hashing
 bcrypt = Bcrypt(app)
@@ -139,6 +147,17 @@ def index():
 @app.route('/upload', methods=["GET", "POST"])
 @login_required
 def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+
+        if file:
+        # Save the uploaded file to the staticFolder/uploads directory
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(file_path)
+
+            # Call the model function with the file path
+            model_output = daigonse(file_path)
+            return render_template('report.html', output = model_output)
     
     return render_template('report.html')
 
