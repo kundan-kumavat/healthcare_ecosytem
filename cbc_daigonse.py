@@ -1,4 +1,3 @@
-
 import json
 import pandas as pd
 import cv2
@@ -47,8 +46,7 @@ def daigonse(imagePath):
         'Neutrophils', 'Lymphocytes', 'Eosinophils', 'Monocytes', 'Basophils',
         'Absolute Neutrophils', 'Absolute Lymphocytes', 'Absolute Eosinophils',
         'Absolute Monocytes', 'Absolute Basophils', 'HCT','PCV', 'MCV',
-        'MCH', 'MCHC', 'RDW', 'MPV', 'Mentezer Index', 'Retic Count', 'ESR',
-        'CRP']
+        'MCH', 'MCHC', 'RDW', 'MPV', 'Mentezer Index', 'Retic Count', 'ESR']
 
             numeric = data_df.select_dtypes(include=['int', 'float'])
 
@@ -93,7 +91,7 @@ def daigonse(imagePath):
 
             columns=['Lymphocytes', 'Basophils', 'Absolute Neutrophils', 'Absolute Lymphocytes',
                                     'Absolute Eosinophils', 'Absolute Monocytes', 'Absolute Basophils', 'MCHC',
-                                    'MPV', 'Mentezer Index', 'CRP']
+                                    'MPV', 'Mentezer Index']
 
             df_new = df.drop(columns, axis=1)
 
@@ -215,5 +213,5 @@ def daigonse(imagePath):
         return predictions
 
     output = output_simplifier(df, final_result)
-    return output
     print(output)
+    return output

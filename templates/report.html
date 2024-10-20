@@ -8,16 +8,16 @@
             <i class='bx bxs-cloud-upload'></i>
             <form action="/upload" method="POST" enctype="multipart/form-data">
             <input type="file" name="file" accept=".png,.jpg,.jpeg,.pdf,.docx,.txt" required id="fileInput">
+            <button type="submit" id="upload">Upload</button>
             </form>
             <span>Select an file to upload</span>
             <p>(.png,.jpg,.jpeg,.pdf,.docx,.txt)</p>
-            <button type="submit" id="upload">Upload</button>
         </div>
     </div>
     {% if output %}
     <p>{{ output }}</p>
     {% endif %}
-</form>
+</div>
 
 <!-- <div class="w-[100%] overflow-x-scroll sm:overflow-auto rounded-md table">
     <header>List of Doctors</header>
