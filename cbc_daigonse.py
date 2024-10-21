@@ -47,8 +47,7 @@ def daigonse(imagePath):
         'Neutrophils', 'Lymphocytes', 'Eosinophils', 'Monocytes', 'Basophils',
         'Absolute Neutrophils', 'Absolute Lymphocytes', 'Absolute Eosinophils',
         'Absolute Monocytes', 'Absolute Basophils', 'HCT','PCV', 'MCV',
-        'MCH', 'MCHC', 'RDW', 'MPV', 'Mentezer Index', 'Retic Count', 'ESR',
-        'CRP']
+        'MCH', 'MCHC', 'RDW', 'MPV', 'Mentezer Index', 'Retic Count', 'ESR']
 
             numeric = data_df.select_dtypes(include=['int', 'float'])
 
@@ -93,7 +92,7 @@ def daigonse(imagePath):
 
             columns=['Lymphocytes', 'Basophils', 'Absolute Neutrophils', 'Absolute Lymphocytes',
                                     'Absolute Eosinophils', 'Absolute Monocytes', 'Absolute Basophils', 'MCHC',
-                                    'MPV', 'Mentezer Index', 'CRP']
+                                    'MPV', 'Mentezer Index']
 
             df_new = df.drop(columns, axis=1)
 
@@ -180,30 +179,30 @@ def daigonse(imagePath):
 
         # Create predictions dictionary
         predictions = {
-            'Age': df_output['Age'].tolist(),
-            'Haemoglobin Level': df_output['Haemoglobin Level'].tolist(),
-            'R.B.C Count': df_output['R.B.C Count'].tolist(),
-            'W.B.C Count': df_output['W.B.C Count'].tolist(),
-            'Platelets Count': df_output['Platelets Count'].tolist(),
-            'Neutrophils': df_output['Neutrophils'].tolist(),
-            'Lymphocytes': df_output['Lymphocytes'].tolist(),
-            'Eosinophils': df_output['Eosinophils'].tolist(),
-            'Monocytes': df_output['Monocytes'].tolist(),
-            'Basophils': df_output['Basophils'].tolist(),
-            'HCT': df_output['HCT'].tolist(),
-            'WBC Morphology': df_output['WBC Morphology'].tolist(),
-            'Monocyte Morphology': df_output['Monocyte Morphology'].tolist(),
-            'RBC Shape': df_output['RBC Shape'].tolist(),
-            'Blood Parasites': df_output['Blood Parasites'].tolist(),
-            'PCV': df_output['PCV'].tolist(),
-            'MCV': df_output['MCV'].tolist(),
-            'MCH': df_output['MCH'].tolist(),
-            'MCHC': df_output['MCHC'].tolist(),
-            'RDW': df_output['RDW'].tolist(),
-            'MPV': df_output['MPV'].tolist(),
-            'Mentezer Index': df_output['Mentezer Index'].tolist(),
-            'Retic Count': df_output['Retic Count'].tolist(),
-            'ESR': df_output['ESR'].tolist(),
+            'Age': df_output['Age'][0],
+            'Haemoglobin Level': df_output['Haemoglobin Level'][0],
+            'R.B.C Count': df_output['R.B.C Count'][0],
+            'W.B.C Count': df_output['W.B.C Count'][0],
+            'Platelets Count': df_output['Platelets Count'][0],
+            'Neutrophils': df_output['Neutrophils'][0],
+            'Lymphocytes': df_output['Lymphocytes'][0],
+            'Eosinophils': df_output['Eosinophils'][0],
+            'Monocytes': df_output['Monocytes'][0],
+            'Basophils': df_output['Basophils'][0],
+            'HCT': df_output['HCT'][0],
+            'WBC Morphology': df_output['WBC Morphology'][0],
+            'Monocyte Morphology': df_output['Monocyte Morphology'][0],
+            'RBC Shape': df_output['RBC Shape'][0],
+            'Blood Parasites': df_output['Blood Parasites'][0],
+            'PCV': df_output['PCV'][0],
+            'MCV': df_output['MCV'][0],
+            'MCH': df_output['MCH'][0],
+            'MCHC': df_output['MCHC'][0],
+            'RDW': df_output['RDW'][0],
+            'MPV': df_output['MPV'][0],
+            'Mentezer Index': df_output['Mentezer Index'][0],
+            'Retic Count': df_output['Retic Count'][0],
+            'ESR': df_output['ESR'][0],
             'Diagnosis': final_result
         }
 
@@ -215,5 +214,6 @@ def daigonse(imagePath):
         return predictions
 
     output = output_simplifier(df, final_result)
-    return output
     print(output)
+    return output
+    

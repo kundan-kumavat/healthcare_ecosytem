@@ -154,6 +154,8 @@ def upload():
         # Save the uploaded file to the staticFolder/uploads directory
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(file_path)
+            print(f"Attempting to save file to: {file_path}")
+
 
             # Call the model function with the file path
             model_output = daigonse(file_path)
@@ -164,6 +166,10 @@ def upload():
 @app.route('/')
 def home():
     return render_template("home.html")
+
+@app.route('/drugs')
+def drugs():
+    return render_template('drugs.html')
 
 @app.route('/form')
 def form():
