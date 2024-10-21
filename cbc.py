@@ -5,13 +5,12 @@
 
 
 import pandas as pd
-import cv2
-import pytesseract
-import re
-import pandas as pd
 
 class CBCDataProcessor:
-    
+    import cv2
+    import pytesseract
+    import re
+    import pandas as pd
     
     def __init__(self):
         self.data = {

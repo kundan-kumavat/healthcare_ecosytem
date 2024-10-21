@@ -1,4 +1,3 @@
-
 import json
 import pandas as pd
 import cv2
@@ -216,4 +215,4 @@ def daigonse(imagePath):
     output = output_simplifier(df, final_result)
     print(output)
     return output
-    
+    print(output)

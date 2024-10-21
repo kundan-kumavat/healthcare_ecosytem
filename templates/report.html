@@ -15,25 +15,9 @@
         </div>
     </div>
     {% if output %}
-    
-    <div class="w-[100%] overflow-x-scroll sm:overflow-auto rounded-md table ">
-        <header>Diagnosis: <br><p class="text-[50px]">{{ output['Diagnosis'] }}</p></header>
-        <ul class="flex flex-row gap-[30px] w-[750px] flex-wrap mt-[20px]">
-            {% for key, value in output.items() %}
-            <li>
-                <strong>{{ key }}:</strong>
-                {% if value is iterable and not value|string %}
-                    {{ value | join(", ") }}
-                {% else %}
-                    {{ value }}
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-          
-      </div>
-    {% endif %} 
-</div>
+    <p>{{ output }}</p>
+    {% endif %}
+</form>
 
 <!-- <div class="w-[100%] overflow-x-scroll sm:overflow-auto rounded-md table">
     <header>List of Doctors</header>
