@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 from functools import lru_cache
 
-file_path = r"C:\Users\abhis\OneDrive\Desktop\final_year_project\medicalQnA\train.csv"
+file_path = r"C:\Users\kunda\Downloads\train.csv"
 cache_file_path = "embedding_cache.pkl"
 
 # Function to set the device dynamically

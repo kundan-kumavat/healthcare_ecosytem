@@ -5,12 +5,12 @@
 
 
 import pandas as pd
+import cv2
+import pytesseract
+import re
+import pandas as pd
 
 class CBCDataProcessor:
-    import cv2
-    import pytesseract
-    import re
-    import pandas as pd
     
     def __init__(self):
         self.data = {
@@ -347,5 +347,3 @@ class CBCDataProcessor:
         cleaned_ocr = self.process_extracted_ocr(ocr)
         processed_df = self.structure_main(cleaned_ocr)
         return processed_df
-
-
