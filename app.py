@@ -171,6 +171,10 @@ def home():
 def drugs():
     return render_template('drugs.html')
 
+@app.route('/global-data')
+def global_indicator():
+    return render_template('globalIndicator.html')
+
 @app.route('/form')
 def form():
     return render_template("form.html")
