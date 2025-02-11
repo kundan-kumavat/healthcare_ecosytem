@@ -148,17 +148,30 @@ def index():
 @login_required
 def upload():
     if request.method == 'POST':
-        file = request.files['file']
+        cbc_file = request.files.get("cbc_report")
+        xray_file = request.files.get("xray_report")
 
-        if file:
-        # Save the uploaded file to the staticFolder/uploads directory
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(file_path)
+        # file = request.files['file']
+
+        if cbc_file and cbc_file.filename != "":
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], cbc_file.filename)
+            cbc_file.save(file_path)
             print(f"Attempting to save file to: {file_path}")
 
+            model_output = model_output = daigonse(file_path)
+            return render_template('report.html', output = model_output)
 
+        elif xray_file and xray_file.filename != "":
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], xray_file.filename)
+            xray_file.save(file_path)
+            print(f"Attempting to save file to: {file_path}")
+
+            model_output = model_output = daigonse(file_path)
+            return render_template('report.html', output = model_output)
+
+        else:
             # Call the model function with the file path
-            model_output = daigonse(file_path)
+            model_output = 'No file uploaded'
             return render_template('report.html', output = model_output)
     
     return render_template('report.html')

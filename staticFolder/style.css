@@ -537,33 +537,58 @@ body.dark .switch::before{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 250px;
+    height: 300px;
     background-color: #e1dffc;
     border: 2px;
     border-color: var(--primary-color);
     border-style: dashed;
     border-radius: 10px;
-    cursor: pointer;
 }
 
-.file-section #upload{
-    background-color: var(--primary-color);
-    color: var(--sidebar-color);
-    outline: none;
-    border: none;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 5px;
-    font-weight: 500;
+.file-section .upload_buttons{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.file-section .upload_buttons button{
+  background-color: var(--primary-color);
+  color: var(--sidebar-color);
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  width: 250px;
 }
 
 .file-section .form-section i{
     font-size: 120px;
     color: var(--primary-color);
+    margin-top: -30px;
 }
 
-.file-section .form-section #fileInput{
-    display: none;
+.file-section .form-section .fileInput{
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 250px;
+}
+
+
+.file-section .form-section .fileInput input{
+  display: none;
 }
 
 .file-section .form-section span{
@@ -575,6 +600,7 @@ body.dark .switch::before{
 .file-section .form-section p{
     font-size: 15px;
     color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
 .form-container{
