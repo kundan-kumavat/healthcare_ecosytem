@@ -13,7 +13,7 @@
                 <div class="fileInput">
                     <label for="cbc_report">CBC Report</label>
                     <input 
-                     onchange="updateFileName('cbc_report', 'cbc_file_name')"
+                     onchange="updateFileName('cbc_report')"
                      type="file" 
                      accept=".png,.jpg,.jpeg,.pdf,.docx,.txt" 
                      name="cbc_report" 
@@ -23,7 +23,7 @@
                 <div class="fileInput">
                     <label for="xray_report">XRAY Report</label>
                     <input 
-                     onchange="updateFileName('xray_report', 'xray_file_name')"
+                     onchange="updateFileName('xray_report')"
                      type="file" 
                      accept=".png,.jpg,.jpeg,.pdf,.docx,.txt" 
                      name="xray_report" 
@@ -36,9 +36,12 @@
             </div>
             </form>
         </div>
+        <span id="uploaded-file">No file choosen</span>
     </div>
     {% if output %}
-    <p>{{ output }}</p>
+    <div class="file-section">
+        <p>{{ output }}</p>
+    </div>
     {% endif %}
 </div>
 
@@ -48,9 +51,22 @@
     const fileInput = document.getElementById('fileInput');
     console.log(fileInput)
 
+    const fileSpan = document.getElementById('uploaded-file');
+
     uploadBox.addEventListener('click', (e) => {
         fileInput.click();
-    })
+    });
+
+    function updateFileName(name){
+        const inputFile = document.getElementById(name);
+        console.log(inputFile);
+
+        const value = inputFile.files.length > 0 ? inputFile.files[0].name : "No File choosen";
+
+        console.log(value);
+
+        fileSpan.textContent = value;
+    }
     
 </script>
 
