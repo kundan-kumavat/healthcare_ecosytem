@@ -258,6 +258,9 @@ def calender():
 def chat():
     user_input = ''
     output = ''
+
+    chat_history = ChatBot.objects(owner=current_user.id).order_by("+timestamp")
+
     if request.method == "POST":
         user_input = request.form['user_input']
         response = chatbot(user_input)
@@ -271,8 +274,10 @@ def chat():
         )
 
         chat_record.save()
+    
+    chat_history = ChatBot.objects(owner=current_user.id).order_by("+timestamp")
 
-    return render_template('chat.html', user_input=user_input, output=output)
+    return render_template('chat.html', output=output, chat_history=chat_history)
 
 # Wait for the page to load completely
 

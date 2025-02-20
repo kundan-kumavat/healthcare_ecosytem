@@ -3,19 +3,20 @@
 
 <div class="container">
 
-    <div class="chat-section">
-    <h1 class="font-semibold text-[25px]">Medical Q&A Chatbot</h1>
-        <div class="chat-input">
-            <form class="w-[100%]" method="post" action="chat">
-                <input id="user_input" name="user_input" placeholder="Enter your questions:" class="block w-full rounded-md border-0 py-0.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></input><br><br> 
-                <button type="submit" class="btn rounded-full w-[50px] h-[50px] flex items-center justify-center"><i class='bx bx-send icon text-[25px]'></i></button>
-            </form>
+    <div class="chat-container">
+
+        <div class="chat-box" id="chat-box">
+            {% for chat in chat_history %}
+                <div class="message user-message">{{ chat.user_input }}</div>
+                <div class="message bot-message">{{ chat.output }}</div>
+            {% endfor %}
         </div>
-        <div class="response max-w-[80%] mt-[50px]">
-            <h2 class="font-semibold mb-[5px]">Response:</h2>
-            <div class="file-section">
-                <p>{{output}}</p>
-            </div>
+
+        <div class="chat-input">
+            <form method="post" action="chat" style="display: flex; width: 100%;">
+                <input id="user_input" name="user_input" placeholder="Type a message..." required>
+                <button type="submit" id="send-btn"><i class="fa fa-paper-plane"></i></button>
+            </form>
         </div>
     </div>
 </div>
@@ -25,6 +26,11 @@
     document.body.addEventListener('reload',(e)=>{
         e.preventDefault()
     })
+
+    window.onload = function() {
+            var chatBox = document.getElementById("chat-box");
+            chatBox.scrollTop = chatBox.scrollHeight;
+    };
 </script>
 
 {% endblock %}
