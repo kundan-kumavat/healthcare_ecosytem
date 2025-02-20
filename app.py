@@ -144,6 +144,10 @@ def index():
     # Pass the medical data array to the template
     return render_template('index.html', username=current_user.username, personal_data=personal_data_array)
 
+@app.route('/dash')
+def dash():
+    return render_template('dashboard.html')
+
 @app.route('/upload', methods=["GET", "POST"])
 @login_required
 def upload():
