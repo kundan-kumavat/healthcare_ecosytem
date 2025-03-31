@@ -1557,3 +1557,152 @@ th, td {
 #send-btn i {
   font-size: 18px;
 }
+
+
+/**************** Dashborad css ********************/
+.dash-head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.dash-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dash-content .section-1{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dash-content .section-1 .stats .stats-card{
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgb(205, 205, 205);
+  padding: 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: var(--primary-color-light);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.stats .stats-card .details{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.stats .stats-card .details img{
+  width: auto;
+  height: 50px;
+}
+
+.stats .stats-card .details .readings{
+  display: flex;
+  flex-direction: column;
+}
+
+.stats .stats-card .details .readings h1{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.stats .stats-card .details .readings span{
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(163, 164, 165);
+}
+
+.activity-card {
+  width: 220px;
+  padding: 10px;
+  background-color: var(--primary-color-light);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.activity-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.steps-left {
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.progress-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring__background,
+.progress-ring__circle {
+  fill: none;
+  stroke-width: 8;
+}
+
+.progress-ring__background {
+  stroke: #eaf1f8;
+}
+
+.progress-ring__circle {
+  stroke: #4d8eff;
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 339.292;
+  transition: stroke-dashoffset 0.3s ease;
+  stroke-linecap: round;
+}
+
+.step-count {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.step-count span {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.step-count p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.goal {
+  font-size: 12px;
+  color: #aaa;
+}

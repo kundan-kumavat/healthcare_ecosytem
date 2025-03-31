@@ -1,0 +1,74 @@
+/* Main Content Styles */
+.content {
+    padding: 20px;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Overview Cards */
+.overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Body Parts */
+.body-parts {
+    margin-top: 20px;
+}
+
+.parts {
+    display: flex;
+    gap: 10px;
+}
+
+.part {
+    padding: 10px 20px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.part:hover {
+    background-color: #4d8eff;
+    color: #fff;
+}
+
+/* Heart Section */
+.heart-status {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heart-img {
+    width: 100px;
+}
+
+.heart-rate {
+    text-align: right;
+}
