@@ -127,22 +127,22 @@ def notification():
 @login_required
 def index():
     # Query the medical data for the current logged-in user
-    personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
+    # personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
 
     # Convert medical data into a list or array
-    personal_data_array = []
-    for data in personal_data_list:
-        personal_data_array.append({
-            'first_name': data.first_name,
-            'last_name': data.last_name,
-            'profession': data.profession,
-            'gender': data.gender,
-            'height': data.height,
-            'weight': data.weigth,
-        })
+    # personal_data_array = []
+    # for data in personal_data_list:
+    #     personal_data_array.append({
+    #         'first_name': data.first_name,
+    #         'last_name': data.last_name,
+    #         'profession': data.profession,
+    #         'gender': data.gender,
+    #         'height': data.height,
+    #         'weight': data.weigth,
+    #     })
 
     # Pass the medical data array to the template
-    return render_template('index.html', username=current_user.username, personal_data=personal_data_array)
+    return render_template('dashboard.html', username=current_user.username)
 
 @app.route('/dash')
 def dash():

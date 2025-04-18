@@ -1573,6 +1573,8 @@ th, td {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  gap: 20px;
+  transition: all 1s ease-in-out;
 }
 
 .dash-content .section-1{
@@ -1588,7 +1590,7 @@ th, td {
   gap: 20px;
 }
 
-.dash-content .section-1 .stats .stats-card{
+.dash-content  .stats .stats-card{
   width: 220px;
   height: 220px;
   border: 1px solid rgb(205, 205, 205);
@@ -1600,6 +1602,10 @@ th, td {
   background-color: var(--primary-color-light);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+.dash-content .stats .stats-card:hover{
+  transform: scale(1.05);
 }
 
 .stats .stats-card .details{
@@ -1630,12 +1636,16 @@ th, td {
 }
 
 .activity-card {
-  width: 220px;
+  width: 200px;
   padding: 10px;
   background-color: var(--primary-color-light);
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.activity-card:hover{
+  transform: scale(1.05);
 }
 
 .activity-card h3 {
@@ -1675,7 +1685,7 @@ th, td {
 }
 
 .progress-ring__circle {
-  stroke: #4d8eff;
+  stroke: var(--primary-color);
   stroke-dasharray: 339.292;
   stroke-dashoffset: 339.292;
   transition: stroke-dashoffset 0.3s ease;

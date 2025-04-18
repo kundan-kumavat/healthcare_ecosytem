@@ -2,9 +2,18 @@
 {% block content %}
     <div class="main-container">
         <div class="container">
+            <!-- <div class="ui ui-1 active">
+                <h1>Dashboard UI – Version 1</h1>
+                <p>Click anywhere here to switch UI</p>
+              </div>
+          
+              <div class="ui ui-2">
+                <h1>Dashboard UI – Version 2</h1>
+                <p>Click anywhere here to go back</p>
+              </div> -->
             <div class="dash-head">
                 <div style="display: flex; flex-direction: column;">
-                    <h1 style="font-size: 25px; font-weight: 700;">Hello, Kundan</h1>
+                    <h1 style="font-size: 25px; font-weight: 700;">Hello, {{ username }}</h1>
                     <span style="font-size: 13px; color: rgb(163, 164, 165); font-weight: 400;">You're doing great! Keep up the good work</span>
                 </div>
                 <div style="display: flex; flex-direction: row; gap: 25px; align-items: center;">
@@ -19,6 +28,9 @@
             </div>
 
             <div class="dash-content">
+
+
+
                 <div class="section-1">
                     <div class="stats">
                         <div class="stats-card">
@@ -53,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; width: 700px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                    <div style="display: flex; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
                         <div style="display: flex; flex-direction: column;">
                             <h1 style="font-size: 20px; font-weight: 600;">Body Conditions</h1>
                             <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
@@ -63,7 +75,7 @@
                                 <div class="details">
                                     <div class="readings">
                                         <h1>Weight</h1>
-                                        <span>Lost 1.0kg</span>
+                                        <span>in KiloGrams</span>
                                     </div>
                                 </div>
                                 <div style="width: 300px;">
@@ -74,7 +86,7 @@
                                     <div class="details">
                                         <div class="readings">
                                             <h1>Calories Intake</h1>
-                                            <span>2000kcal</span>
+                                            <span>Values in Calories</span>
                                         </div>
                                     </div>
                                     <div style="width: 270px;">
@@ -87,7 +99,7 @@
                                 <div class="progress-container">
                                     <svg class="progress-ring" width="120" height="120">
                                         <circle class="progress-ring__background" cx="60" cy="60" r="54" />
-                                        <circle class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                        <circle id="ring_1" class="progress-ring__circle" cx="60" cy="60" r="54" />
                                     </svg>
                                     <div class="step-count">
                                         <span id="step-count">7324</span>
@@ -100,7 +112,7 @@
                                 <div class="details">
                                     <div class="readings">
                                         <h1>Sleep Time</h1>
-                                        <span>8 Hours</span>
+                                        <span>Values in Hours</span>
                                     </div>
                                 </div>
                                 <div style="width: 350px; margin-top: -20px;">
@@ -110,46 +122,171 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- <div class="section-1">
+                    <div style="font-size: 60px; margin-top: -15px;">
+                        <p style="font-weight: 550;">Heart</p>
+                        <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/blood_cell-removebg-preview.png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart Beat</h1>
+                                    <span>120/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: -50px;" src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/ecg-heart-rate-f0t-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart ECG</h1>
+                                    <span>64/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: 5px;" src="../staticFolder/heart-beat-ecg.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart MRI</h1>
+                                    <span>Report</span>
+                                </div>
+                            </div>
+                            <img style="border-radius: 10px;" src="../staticFolder/heart-CT-scans-1296x728-header-1024x575.webp" alt="">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                        <div style="display: flex; flex-direction: column;">
+                            <h1 style="font-size: 20px; font-weight: 600;">Heart Statistics</h1>
+                            <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                        </div>
+                        <div class="stats">
+                            <div class="activity-card">
+                                <h3>PAP Value</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_2" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div style="width: 410px; height: 250px;" class="stats-card">
+                                <div class="details">
+                                    <div class="readings">
+                                        <h1>Stroke Volume</h1>
+                                        <span>60/80 mL per Beat</span>
+                                    </div>
+                                </div>
+                                <div style="width: 350px; margin-top: -20px;">
+                                    <canvas id="lineChart3"></canvas>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>RCB Count</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_3" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">102/70</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>Blood Pressure</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_4" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>PAP Value</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_5" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
                 <div>
-                    <!-- <div class="model" style="width: 150px; height: 100vh;">
+                    <!-- <div class="model">
                         <spline-viewer 
                         url="https://prod.spline.design/InciWTmX49Eq1Pgx/scene.splinecode">
                         </spline-viewer>
                     </div> -->
-                    <div style="background-color: aqua; width: 500px; height: 100vh;">
+                    <div style="background-color: aqua; width: 500px; height: 100%; border-radius: 20px;">
                         
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
 <script>
-    // Total and current step values
-    const totalSteps = 10000;
-    const currentSteps = 7324;
 
-    // Calculate progress percentage
-    const progressCircle = document.querySelector('.progress-ring__circle');
-    const radius = progressCircle.r.baseVal.value;
-    const circumference = 2 * Math.PI * radius;
+    function updateProgressCircle(circleId, currentValue, totalValue) {
+        const progressCircle = document.querySelector(`#${circleId}`);
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
 
-    // Set circle properties
-    progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-    progressCircle.style.strokeDashoffset = circumference;
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = circumference;
 
-    // Update progress dynamically
-    const stepPercentage = (currentSteps / totalSteps) * 100;
-    const offset = circumference - (stepPercentage / 100) * circumference;
-    progressCircle.style.strokeDashoffset = offset;
+        const percentage = (currentValue / totalValue) * 100;
+        const offset = circumference - (percentage / 100) * circumference;
+        progressCircle.style.strokeDashoffset = offset;
+    }
 
+    updateProgressCircle("ring_1", 7324, 10000); 
+    // updateProgressCircle("ring_2", 67, 100);
+    // updateProgressCircle("ring_3", 67, 100);
+    // updateProgressCircle("ring_4", 75, 100);
+    // updateProgressCircle("ring_5", 60, 100);
 
-    const bar = document.getElementById('barChart');
-    // const pie = document.getElementById('pieChart');
-    const line = document.getElementById('lineChart');
-    const line2 = document.getElementById('lineChart2');
+    function createChart(chartElementId, chartType, chartData, chartOptions = {}) {
+        const ctx = document.getElementById(chartElementId);
+        if (ctx) {
+            new Chart(ctx, {
+                type: chartType,
+                data: chartData,
+                options: chartOptions
+            });
+        } else {
+            console.warn(`Chart element with ID "${chartElementId}" not found.`);
+        }
+    }
 
     const barData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
@@ -177,41 +314,12 @@
         borderWidth: 1,
     }]
     };
-    
-    new Chart(bar, {
-        type: 'bar',
-        data: barData,
-        options: {
+
+    createChart('barChart', 'bar', barData, {
         scales: {
-            y: {
-            beginAtZero: true
-            }
-        }
+            y: { beginAtZero: true }
         }
     });
-
-    // const pieData = {
-    // labels: [
-    //     'Red',
-    //     'Blue',
-    //     'Yellow'
-    // ],
-    // datasets: [{
-    //     label: 'My First Dataset',
-    //     data: [300, 50, 100],
-    //     backgroundColor: [
-    //     'rgb(255, 99, 132)',
-    //     'rgb(54, 162, 235)',
-    //     'rgb(255, 205, 86)'
-    //     ],
-    //     hoverOffset: 10
-    // }]
-    // };
-
-    // new Chart(pie, {
-    //     type: 'doughnut',
-    //     data: pieData,
-    // });
 
     const lineData = {
     labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
@@ -235,16 +343,20 @@
     }]
     };
 
-    new Chart(line, {
-        type: 'line',
-        data: lineData,
-    })
+    const lineData3 = {
+        labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
+        datasets: [{
+            label: 'This Week',
+            data: [78, 76, 81, 71, 69, 75, 79],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };
 
-    new Chart(line2, {
-        type: 'line',
-        data: lineData2,
-    })
-
+    createChart('lineChart', 'line', lineData);
+    createChart('lineChart2', 'line', lineData2);
+    createChart('lineChart3', 'line', lineData3);
 </script>
 
 {% endblock %}
