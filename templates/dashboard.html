@@ -22,7 +22,7 @@
 
 
 
-                <div class="section-1 acts" id="bodyStats">
+                <div class="popup-section visible" id="bodyStats">
                     <div class="stats">
                         <div class="stats-card">
                             <div class="details">
@@ -115,9 +115,227 @@
                 </div>
 
 
-                <div class="section-1" id="heartStats">
+                <div class="popup-section" id="heartStats">
                     <div style="font-size: 60px; margin-top: -15px;">
                         <p style="font-weight: 550;">Heart</p>
+                        <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/blood_cell-removebg-preview.png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart Beat</h1>
+                                    <span>120/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: -50px;" src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/ecg-heart-rate-f0t-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart ECG</h1>
+                                    <span>64/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: 5px;" src="../staticFolder/heart-beat-ecg.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart MRI</h1>
+                                    <span>Report</span>
+                                </div>
+                            </div>
+                            <img style="border-radius: 10px;" src="../staticFolder/heart-CT-scans-1296x728-header-1024x575.webp" alt="">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; width: 700px; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                        <div style="display: flex; flex-direction: column;">
+                            <h1 style="font-size: 20px; font-weight: 600;">Heart Statistics</h1>
+                            <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                        </div>
+                        <div class="stats">
+                            <div style="width: 220px; height: 270px;" class="stats-card">
+                                <div class="details">
+                                    <div class="readings">
+                                        <h1>Stroke Volume</h1>
+                                        <span>60/80 mL per Beat</span>
+                                    </div>
+                                </div>
+                                <div style="width: 180px; margin-top: -15px;">
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                            </div>
+                            <div style="width: 400px; height: 270px;" class="stats-card">
+                                <div class="details">
+                                    <div class="readings">
+                                        <h1>Stroke Volume</h1>
+                                        <span>60/80 mL per Beat</span>
+                                    </div>
+                                </div>
+                                <div style="width: 360px; margin-top: -20px;">
+                                    <canvas id="lineChart3"></canvas>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>RCB Count</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_3" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">102/70</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>Blood Pressure</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_4" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>PAP Value</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_5" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-section" id="kidneyStats">
+                    <div style="font-size: 60px; margin-top: -15px;">
+                        <p style="font-weight: 550;">Kidney</p>
+                        <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/blood_cell-removebg-preview.png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart Beat</h1>
+                                    <span>120/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: -50px;" src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/ecg-heart-rate-f0t-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart ECG</h1>
+                                    <span>64/80</span>
+                                </div>
+                            </div>
+                            <img style="margin-top: 5px;" src="../staticFolder/heart-beat-ecg.png" alt="">
+                        </div>
+                        <div class="stats-card">
+                            <div class="details">
+                                <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                                <div class="readings">
+                                    <h1>Heart MRI</h1>
+                                    <span>Report</span>
+                                </div>
+                            </div>
+                            <img style="border-radius: 10px;" src="../staticFolder/heart-CT-scans-1296x728-header-1024x575.webp" alt="">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; width: 700px; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                        <div style="display: flex; flex-direction: column;">
+                            <h1 style="font-size: 20px; font-weight: 600;">Heart Statistics</h1>
+                            <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                        </div>
+                        <div class="stats">
+                            <div style="width: 220px; height: 270px;" class="stats-card">
+                                <div class="details">
+                                    <div class="readings">
+                                        <h1>Stroke Volume</h1>
+                                        <span>60/80 mL per Beat</span>
+                                    </div>
+                                </div>
+                                <div style="width: 180px; margin-top: -15px;">
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                            </div>
+                            <div style="width: 400px; height: 270px;" class="stats-card">
+                                <div class="details">
+                                    <div class="readings">
+                                        <h1>Stroke Volume</h1>
+                                        <span>60/80 mL per Beat</span>
+                                    </div>
+                                </div>
+                                <div style="width: 360px; margin-top: -20px;">
+                                    <canvas id="lineChart3"></canvas>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>RCB Count</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_3" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">102/70</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>Blood Pressure</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_4" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="activity-card">
+                                <h3>PAP Value</h3>
+                                <div class="progress-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                        <circle id="ring_5" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                    </svg>
+                                    <div class="step-count">
+                                        <span id="step-count">100/67</span>
+                                        <p>mmHg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-section" id="brainStats">
+                    <div style="font-size: 60px; margin-top: -15px;">
+                        <p style="font-weight: 550;">Brain</p>
                         <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
                     </div>
                     <div class="stats">
@@ -241,67 +459,68 @@
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 <script>
 
+    // 3D Model Code ////////////////////////////////////////////////////////////////////////
+
     const splineViewer = document.querySelector('spline-viewer');
-    const statsBody = document.getElementById("bodyStats");
-    const statsPopup = document.getElementById("heartStats");
+const statsBody = document.getElementById("bodyStats");
 
-    statsPopup.style.display = "none";
+const statsSections = {
+  heartIcon: document.getElementById("heartStats"),
+  kidney: document.getElementById("kidneyStats"),
+  headIcon: document.getElementById("brainStats"),
+};
 
-    // Define body part information based on object IDs in the Spline model
-    const icons = [
-    {
-            name: "headIcon",
-            centerX: 1194, // X-coordinate for the center of the head icon
-            centerY: 143, // Y-coordinate for the center of the head icon
-            radius: 20,   // Radius of the head icon
-            content: "This is the head. It contains the brain, eyes, and ears."
-        },
-        {
-            name: "heartIcon",
-            centerX: 1268, // X-coordinate for the center of the heart icon
-            centerY: 255, // Y-coordinate for the center of the heart icon
-            radius: 20,   // Radius of the heart icon
-            content: "This is the heart. It pumps blood throughout the body."
-        },
-        {
-            name: "kidney",
-            centerX: 1212, // X-coordinate for the center of the arm icon
-            centerY: 327, // Y-coordinate for the center of the arm icon
-            radius: 20,   // Radius of the arm icon
-            content: "This is the kidney. It includes muscles and its responsible for filtering"
+const allSections = [statsBody, ...Object.values(statsSections)];
+
+function showOnly(sectionToShow) {
+  allSections.forEach(section => {
+    if (section === sectionToShow) {
+      section.style.display = 'flex';
+      // Small timeout ensures transition kicks in
+      setTimeout(() => {
+        section.classList.add('visible');
+      }, 10);
+    } else {
+      section.classList.remove('visible');
+      // Hide after transition completes
+      setTimeout(() => {
+        if (!section.classList.contains('visible')) {
+          section.style.display = 'none';
         }
-        // Add more icons/regions here as needed
-    ];
+      }, 0);
+    }
+  });
+}
 
-    // Handle Spline raycast events to detect clicked objects
-    splineViewer.addEventListener('click', (event) => {
-        console.log(event);
-        const clickX = event.clientX;
-        const clickY = event.clientY;
+const icons = [
+  { name: "heartIcon", centerX: 1268, centerY: 255, radius: 20 },
+  { name: "kidney", centerX: 1212, centerY: 327, radius: 20 },
+  { name: "headIcon", centerX: 1194, centerY: 143, radius: 20 },
+];
 
-        console.log("client x:", clickX);
-        console.log("client y:", clickY);
-        let clickedIcon = null;
+function getClickedIcon(x, y) {
+  return icons.find(icon => {
+    const dx = x - icon.centerX;
+    const dy = y - icon.centerY;
+    return Math.sqrt(dx * dx + dy * dy) <= icon.radius;
+  });
+}
 
-        for (let icon of icons) {// Calculate the distance between the clicked point and the icon's center
-            const distance = Math.sqrt(Math.pow(clickX - icon.centerX, 2) + Math.pow(clickY - icon.centerY, 2));
+splineViewer.addEventListener("click", (event) => {
+  const { clientX, clientY } = event;
+  const clicked = getClickedIcon(clientX, clientY);
+  const sectionToShow = clicked ? statsSections[clicked.name] : statsBody;
+  showOnly(sectionToShow);
+});
 
-            
-            if (distance <= icon.radius) {
-                clickedIcon = icon;
-                break;
-            }
-        }
+// Show body section on page load
+showOnly(statsBody);
 
-        
-        if (clickedIcon) {
-            statsBody.style.display = "none";
-            statsPopup.style.display = "flex";
-        } else {
-            statsBody.style.display = "flex";
-            statsPopup.style.display = "none";
-        }
-    });
+
+
+
+    /// Activity circle Code //////////////////////////////////////////
+
 
     function updateProgressCircle(circleId, currentValue, totalValue) {
         const progressCircle = document.querySelector(`#${circleId}`);
@@ -317,10 +536,12 @@
     }
 
     updateProgressCircle("ring_1", 7324, 10000); 
-    // updateProgressCircle("ring_2", 67, 100);
-    // updateProgressCircle("ring_3", 67, 100);
-    // updateProgressCircle("ring_4", 75, 100);
-    // updateProgressCircle("ring_5", 60, 100);
+    updateProgressCircle("ring_3", 67, 100);
+    updateProgressCircle("ring_4", 75, 100);
+    updateProgressCircle("ring_5", 60, 100);
+
+
+    // Charts Code ///////////////////////////////////////////////////////////
 
     function createChart(chartElementId, chartType, chartData, chartOptions = {}) {
         const ctx = document.getElementById(chartElementId);

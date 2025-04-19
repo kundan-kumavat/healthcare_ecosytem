@@ -1577,10 +1577,21 @@ th, td {
   transition: all 1s ease-in-out;
 }
 
-.dash-content .section-1{
-  display: flex;
+.popup-section {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.7s ease;
+  pointer-events: none;
+  display: none;
+}
+
+.popup-section.visible {
+  display: flex !important;
   flex-direction: column;
   gap: 40px;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 .stats{
