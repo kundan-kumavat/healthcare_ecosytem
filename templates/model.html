@@ -8,14 +8,12 @@
         </spline-viewer>
     </div>
 
-    <!-- Modal to show body part information -->
     <div id="infoModal" class="modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: none; z-index: 10; justify-content: center; align-items: center;">
         <div class="modal-content" style="background: white; padding: 20px; border-radius: 10px;">
             <p class="cursor-pointer" id="bodyPartInfo">Click on a body part for details.</p>
         </div>
     </div>
     
-    <!-- Stats Popup -->
     <div class="stats w-full h-[100vh] z-[100] relative" id="statsPopup" style="display: none; position: fixed; top: 0; left: 250px; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 20;">
         
             <h1 class="heading">Heart Health Statistics</h1>
@@ -129,6 +127,8 @@
     splineViewer.addEventListener('click', (event) => {
         const clickX = event.clientX;
         const clickY = event.clientY;
+
+        console.log(clickX, clickY);
 
         let clickedIcon = null;
 
