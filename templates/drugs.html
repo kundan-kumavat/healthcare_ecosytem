@@ -21,7 +21,7 @@
                 <div class="alphabet-filter">
                     <div class="filter-header">Filter by Letter</div>
                     <div class="letters-grid">
-                        <a href="/" class="letter {% if not selected_letter %}active{% endif %}">All</a>
+                        <a href="/drugs" class="letter {% if not selected_letter %}active{% endif %}">All</a>
                         {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
                             <a href="?letter={{ letter }}{% if search_term %}&search_term={{ search_term }}{% endif %}" 
                                class="letter {% if selected_letter == letter %}active{% endif %}">

@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
-from mongoengine import connect
 from bson.objectid import ObjectId
 from models import UserDocument, MedicalData, Appointment, Post, CommunityGroup, ChatBot, PersonalData, PastSurgeryInfo, CurrentMedication, Addication
 import datetime

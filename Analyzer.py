@@ -319,7 +319,7 @@ def analyzer_main(file_path):
 
     file_path = file_path 
     output_path = "output/Analysis.json"  
-    api_key = 'AIzaSyAWYKOtmoIgxLomMFXC54ybxvtj5go356k'  
+    api_key = os.getenv("API_KEY")  
     
     try:
 

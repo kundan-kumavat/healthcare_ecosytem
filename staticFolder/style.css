@@ -15,6 +15,16 @@
     --text-color: #000;
     --secondary: #bfc0c0;
 
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --background-color: #f8fafc;
+    --card-background: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --border-color: #e2e8f0;
+    --success-color: #22c55e;
+    --warning-color: #ef4444;
+
     --white: #fff;
     --text-clr: #5b6475;
     --header-clr: #25273d;
