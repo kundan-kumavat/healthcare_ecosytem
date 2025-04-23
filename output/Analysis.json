@@ -1,0 +1,43 @@
+{
+  "patient_info": {
+    "name": "Unknown",
+    "age": "Unknown",
+    "gender": "Unknown",
+    "id": "Unknown"
+  },
+  "dates": {
+    "test_date": "Unknown",
+    "report_date": "Unknown"
+  },
+  "provider": {
+    "name": "Unknown",
+    "credentials": "Unknown"
+  },
+  "test": {
+    "name": "MRI Scan",
+    "type": "Imaging"
+  },
+  "results": [],
+  "abnormal_findings": [
+    {
+      "abnormality": "Possible renal cysts (indicated by arrows in the images)"
+    },
+    {
+      "abnormality": "Possible renal mass or other abnormality (indicated by arrowheads in the images)"
+    }
+  ],
+  "Diagnosis": [
+    "Possible renal cysts and/or renal mass. Further investigation is required to determine the exact nature of the findings."
+  ],
+  "Medical Suggestions": [
+    "Further evaluation is needed to characterize the renal findings.",
+    "Consultation with a nephrologist or urologist is recommended."
+  ],
+  "Treatment": [
+    "The treatment will depend on the diagnosis after further evaluation.",
+    "If renal cysts are confirmed and asymptomatic, observation may be sufficient.",
+    "If a renal mass is suspected, further imaging (e.g., CT scan with contrast) and/or biopsy may be necessary to determine if it is benign or malignant.",
+    "Treatment options for renal masses may include surgery, ablation, or active surveillance, depending on the size, location, and characteristics of the mass."
+  ],
+  "Medications": "None"
+}

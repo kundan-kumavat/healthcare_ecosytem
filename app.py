@@ -10,6 +10,7 @@ from datetime import datetime
 from chatbot import chatbot
 from config import SECRET_KEY, connect, db, users_collection, medical_collection, client
 import os
+# from cbc_daigonse import daigonse
 import pandas as pd
 from Analyzer import analyzer_main
 import json
@@ -266,6 +267,7 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
+
 @app.route('/profile', methods=["GET", "POST"])
 @login_required
 def profile():
