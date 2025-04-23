@@ -1573,12 +1573,25 @@ th, td {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  gap: 20px;
+  transition: all 1s ease-in-out;
 }
 
-.dash-content .section-1{
-  display: flex;
+.popup-section {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.8s ease;
+  pointer-events: none;
+  display: none;
+}
+
+.popup-section.visible {
+  display: flex !important;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
 .stats{
@@ -1588,7 +1601,7 @@ th, td {
   gap: 20px;
 }
 
-.dash-content .section-1 .stats .stats-card{
+.dash-content  .stats .stats-card{
   width: 220px;
   height: 220px;
   border: 1px solid rgb(205, 205, 205);
@@ -1600,6 +1613,10 @@ th, td {
   background-color: var(--primary-color-light);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+.dash-content .stats .stats-card:hover{
+  transform: scale(1.05);
 }
 
 .stats .stats-card .details{
@@ -1630,12 +1647,16 @@ th, td {
 }
 
 .activity-card {
-  width: 220px;
+  width: 200px;
   padding: 10px;
   background-color: var(--primary-color-light);
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.activity-card:hover{
+  transform: scale(1.05);
 }
 
 .activity-card h3 {
@@ -1675,7 +1696,7 @@ th, td {
 }
 
 .progress-ring__circle {
-  stroke: #4d8eff;
+  stroke: var(--primary-color);
   stroke-dasharray: 339.292;
   stroke-dashoffset: 339.292;
   transition: stroke-dashoffset 0.3s ease;
@@ -1705,4 +1726,121 @@ th, td {
 .goal {
   font-size: 12px;
   color: #aaa;
+}
+
+.click-zone {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(255, 0, 0, 1); /* transparent but clickable */
+}
+
+.analysisReport .header {
+  background-color: #e6f0ff;
+  color: #003366;
+  padding: 20px 25px;
+  border-radius: 8px;
+  border-left: 6px solid #0056b3;
+  position: relative;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.analysisReport .header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.analysisReport .header .info {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.analysisReport .lab-info {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  text-align: right;
+  font-size: 14px;
+  color: #333;
+}
+
+.analysisReport .section {
+  background-color: #ffffff;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.analysisReport .section h2 {
+  font-size: 22px;
+  color: #0056b3;
+  border-bottom: 1px solid #cce0ff;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.analysisReport .section ul {
+  padding-left: 20px;
+  margin-top: 0;
+}
+
+.analysisReport .section ol {
+  padding-left: 20px;
+  margin-top: 0;
+}
+
+.analysisReport .section li {
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.analysisReport .section p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.analysisReport table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.analysisReport table th, table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+}
+
+.analysisReport table th {
+  background-color: #f0f4f8;
+  color: #333;
+  font-weight: 600;
+}
+
+.analysisReport table tbody tr:nth-child(even) {
+  background-color: #f9fbfc;
+}
+
+.analysisReport .flag-high {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.analysisReport .flag-low {
+  color: #f0ad4e;
+  font-weight: bold;
+}
+
+@media print {
+  .analysisReport .header, .analysisReport .section {
+      page-break-inside: avoid;
+  }
 }

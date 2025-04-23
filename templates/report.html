@@ -38,9 +38,93 @@
         </div>
         <span id="uploaded-file">No file choosen</span>
     </div>
-    {% if output %}
+    {% if output and output != 'No file uploaded' %}
     <div class="file-section">
-        <p>{{ output }}</p>
+        <div class="analysisReport">
+            <div class="header">
+                <h1>🧾 Patient Medical Report</h1>
+                <div class="info">
+                    <p style="font-size: 25px;"><strong>Name:</strong> {{ output['patient_info']['name'] }}</p>
+                    <p><strong>Age:</strong> {{ output['patient_info']['age'] }} &nbsp;&nbsp;
+                       <strong>Gender:</strong> {{ output['patient_info']['gender'] }}</p>
+                    <p><strong>Patient ID:</strong> {{ output['patient_info']['id'] }}</p>
+                </div>
+                <div class="lab-info">
+                    <p><strong>Test Date:</strong> {{ output['dates']['test_date'] }}</p>
+                    <p><strong>Report Date:</strong> {{ output['dates']['report_date'] }}</p>
+                    <p><strong>Lab:</strong> {{ output['provider']['name'] }}</p>
+                </div>
+            </div>
+        
+        
+            <div class="section">
+                <h2>🩺 Diagnosis</h2>
+                <ul>
+                    {% for diag in output['Diagnosis'] %}
+                        <li>{{ diag }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>💊 Medications</h2>
+                {% if output['Medications'] and output['Medications'] != "None" %}
+                <ol>
+                    <li>{{ output['Medications'] }}</li>
+                </ol>
+                {% else %}
+                <p>No medications prescribed at this time.</p>
+                {% endif %}
+            </div>
+        
+            <div class="section">
+                <h2>💡 Medical Suggestions</h2>
+                <ul>
+                    {% for suggestion in output['Medical Suggestions'] %}
+                        <li>{{ suggestion }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <div class="section">
+                <h2>🛠️ Treatment</h2>
+                <ul>
+                    {% for treat in output['Treatment'] %}
+                        <li>{{ treat }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <div class="section">
+                <h2>📊 CBC Test Parameters</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                            <th>Reference Range</th>
+                            <th>Flag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in output['results'] %}
+                            <tr>
+                                <td>{{ result['parameter'] }}</td>
+                                <td>{{ result['value'] }}</td>
+                                <td>{{ result['reference_range'] if result['reference_range'] else 'N/A' }}</td>
+                                <td class="{% if result['flag'] == 'H' %}flag-high{% elif result['flag'] == 'L' %}flag-low{% endif %}">
+                                    {{ result['flag'] if result['flag'] else '-' }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% elif output == 'No file uploaded' %}
+    <div class="file-section">
+        <h2>No file was uploaded. Please try again.</h2>
     </div>
     {% endif %}
 </div>

@@ -1,250 +1,677 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="main-container">
-        <div class="container">
-            <div class="dash-head">
-                <div style="display: flex; flex-direction: column;">
-                    <h1 style="font-size: 25px; font-weight: 700;">Hello, Kundan</h1>
-                    <span style="font-size: 13px; color: rgb(163, 164, 165); font-weight: 400;">You're doing great! Keep up the good work</span>
+<div class="main-container">
+    <div class="container">
+        <div class="dash-head">
+            <div style="display: flex; flex-direction: column;">
+                <h1 style="font-size: 25px; font-weight: 700;">Hello, {{ username }}</h1>
+                <span style="font-size: 13px; color: rgb(163, 164, 165); font-weight: 400;">You're doing great! Keep up
+                    the good work</span>
+            </div>
+            <div style="display: flex; flex-direction: row; gap: 25px; align-items: center;">
+                <div class="search-bar"
+                    style="display: flex;align-items: center;padding: 0px 20px; border-width: 1px; border-radius: 30px; border-color: rgb(182, 182, 182); border-style: solid;">
+                    <i class="bx bx-search"></i>
+                    <input
+                        style="outline: none; border: none; background-color: #e4e9f7; padding: 10px 15px; font-size: 15px; width: 250px;"
+                        type="text" placeholder="Search...">
                 </div>
-                <div style="display: flex; flex-direction: row; gap: 25px; align-items: center;">
-                    <div class="search-bar" style="display: flex;align-items: center;padding: 0px 20px; border-width: 1px; border-radius: 30px; border-color: rgb(182, 182, 182); border-style: solid;">
-                        <i class="bx bx-search"></i>
-                        <input style="outline: none; border: none; background-color: #e4e9f7; padding: 10px 15px; font-size: 15px; width: 250px;" type="text" placeholder="Search...">
+                <div
+                    style="border-width: 1px; border-style: solid; border-color: rgb(182, 182, 182); border-radius: 50%;display: flex; justify-content: center; align-items: center;">
+                    <a href="/chat"><i style="font-size: 20px; padding: 10px;" class='bx bx-chat icon'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-content">
+
+
+
+            <div class="popup-section visible" id="bodyStats">
+                <div class="stats">
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/images__1_-removebg-preview.png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Temperature</h1>
+                                <span>102/60</span>
+                            </div>
+                        </div>
+                        <img style="margin-top: -45px;"
+                            src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png"
+                            alt="">
                     </div>
-                    <div style="border-width: 1px; border-style: solid; border-color: rgb(182, 182, 182); border-radius: 50%;display: flex; justify-content: center; align-items: center;">
-                        <i style="font-size: 20px; padding: 10px;" class='bx bx-chat icon'></i>
+                    <div class="stats-card" id="heart-trigger">
+                        <div class="details">
+                            <img src="../staticFolder/human-being-heart-Premium-vector-PNG-removebg-preview.png"
+                                alt="heart-icon">
+                            <div class="readings">
+                                <h1>Heart Rate</h1>
+                                <span>124 bpm</span>
+                            </div>
+                        </div>
+                        <img src="../staticFolder/heart-beat-ecg.png" alt="">
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/images__2_-removebg-preview.png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Glucose</h1>
+                                <span>102/60</span>
+                            </div>
+                        </div>
+                        <img src="../staticFolder/images-removebg-preview.png" alt="">
+                    </div>
+                </div>
+
+                <div
+                    style="display: flex; flex-direction: column; width: 700px; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <h1 style="font-size: 20px; font-weight: 600;">Body Conditions</h1>
+                        <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                    </div>
+                    <div class="stats">
+                        <div style="width: 320px; height: 250px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Weight</h1>
+                                    <span>in KiloGrams</span>
+                                </div>
+                            </div>
+                            <div style="width: 300px;">
+                                <canvas id="lineChart"></canvas>
+                            </div>
+                        </div>
+                        <div style="width: 310px; height: 250px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Calories Intake</h1>
+                                    <span>Values in Calories</span>
+                                </div>
+                            </div>
+                            <div style="width: 270px;">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Activity</h3>
+                            <p class="steps-left">654 Steps left</p>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_1" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">7324</span>
+                                    <p>Steps</p>
+                                </div>
+                            </div>
+                            <p class="goal">10,000 Steps</p>
+                        </div>
+                        <div style="width: 410px; height: 250px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Sleep Time</h1>
+                                    <span>Values in Hours</span>
+                                </div>
+                            </div>
+                            <div style="width: 350px; margin-top: -20px;">
+                                <canvas id="lineChart2"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="dash-content">
-                <div class="section-1">
-                    <div class="stats">
-                        <div class="stats-card">
-                            <div class="details">
-                                <img src="../staticFolder/images__1_-removebg-preview.png" alt="heart-icon">
-                                <div class="readings">
-                                    <h1>Temperature</h1>
-                                    <span>102/60</span>
-                                </div>
-                            </div>
-                            <img style="margin-top: -45px;" src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png" alt="">
-                        </div>
-                        <div class="stats-card">
-                            <div class="details">
-                                <img src="../staticFolder/human-being-heart-Premium-vector-PNG-removebg-preview.png" alt="heart-icon">
-                                <div class="readings">
-                                    <h1>Heart Rate</h1>
-                                    <span>124 bpm</span>
-                                </div>
-                            </div>
-                            <img src="../staticFolder/heart-beat-ecg.png" alt="">
-                        </div>
-                        <div class="stats-card">
-                            <div class="details">
-                                <img src="../staticFolder/images__2_-removebg-preview.png" alt="heart-icon">
-                                <div class="readings">
-                                    <h1>Glucose</h1>
-                                    <span>102/60</span>
-                                </div>
-                            </div>
-                            <img src="../staticFolder/images-removebg-preview.png" alt="">
-                        </div>
-                    </div>
 
-                    <div style="display: flex; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; width: 700px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
-                        <div style="display: flex; flex-direction: column;">
-                            <h1 style="font-size: 20px; font-weight: 600;">Body Conditions</h1>
-                            <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+            <div class="popup-section" id="heartStats">
+                <div style="font-size: 60px; margin-top: -15px;">
+                    <p style="font-weight: 550;">Heart</p>
+                    <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                </div>
+                <div class="stats">
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/blood_cell-removebg-preview.png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Heart Beat</h1>
+                                <span>120/80</span>
+                            </div>
                         </div>
-                        <div class="stats">
-                            <div style="width: 320px; height: 250px;" class="stats-card">
-                                <div class="details">
-                                    <div class="readings">
-                                        <h1>Weight</h1>
-                                        <span>Lost 1.0kg</span>
-                                    </div>
-                                </div>
-                                <div style="width: 300px;">
-                                    <canvas id="lineChart"></canvas>
+                        <img style="margin-top: -50px;"
+                            src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png"
+                            alt="">
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/ecg-heart-rate-f0t-removebg-preview (1).png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Heart ECG</h1>
+                                <span>64/80</span>
+                            </div>
+                        </div>
+                        <img style="margin-top: 5px;" src="../staticFolder/heart-beat-ecg.png" alt="">
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Heart MRI</h1>
+                                <span>Report</span>
+                            </div>
+                        </div>
+                        <img style="border-radius: 10px;"
+                            src="../staticFolder/heart-CT-scans-1296x728-header-1024x575.webp" alt="">
+                    </div>
+                </div>
+
+                <div
+                    style="display: flex; width: 700px; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <h1 style="font-size: 20px; font-weight: 600;">Heart Statistics</h1>
+                        <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                    </div>
+                    <div class="stats">
+                        <div style="width: 220px; height: 270px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Heart Health</h1>
+                                    <span></span>
                                 </div>
                             </div>
-                            <div style="width: 310px; height: 250px;" class="stats-card">
-                                    <div class="details">
-                                        <div class="readings">
-                                            <h1>Calories Intake</h1>
-                                            <span>2000kcal</span>
-                                        </div>
-                                    </div>
-                                    <div style="width: 270px;">
-                                        <canvas id="barChart"></canvas>
-                                    </div>
+                            <div style="width: 180px; margin-top: -15px;">
+                                <canvas id="pieChart"></canvas>
                             </div>
-                            <div class="activity-card">
-                                <h3>Activity</h3>
-                                <p class="steps-left">654 Steps left</p>
-                                <div class="progress-container">
-                                    <svg class="progress-ring" width="120" height="120">
-                                        <circle class="progress-ring__background" cx="60" cy="60" r="54" />
-                                        <circle class="progress-ring__circle" cx="60" cy="60" r="54" />
-                                    </svg>
-                                    <div class="step-count">
-                                        <span id="step-count">7324</span>
-                                        <p>Steps</p>
-                                    </div>
+                        </div>
+                        <div style="width: 400px; height: 270px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Stroke Volume</h1>
+                                    <span>60/80 mL per Beat</span>
                                 </div>
-                                <p class="goal">10,000 Steps</p>
-                            </div> 
-                            <div style="width: 410px; height: 250px;" class="stats-card">
-                                <div class="details">
-                                    <div class="readings">
-                                        <h1>Sleep Time</h1>
-                                        <span>8 Hours</span>
-                                    </div>
+                            </div>
+                            <div style="width: 360px; margin-top: -20px;">
+                                <canvas id="lineChart3"></canvas>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>RCB Count</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_3" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">102/70</span>
+                                    <p>mmHg</p>
                                 </div>
-                                <div style="width: 350px; margin-top: -20px;">
-                                    <canvas id="lineChart2"></canvas>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Blood Pressure</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_4" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">100/67</span>
+                                    <p>mmHg</p>
                                 </div>
-                            </div>                          
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>PAP Value</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_5" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">100/67</span>
+                                    <p>mmHg</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <!-- <div class="model" style="width: 150px; height: 100vh;">
-                        <spline-viewer 
-                        url="https://prod.spline.design/InciWTmX49Eq1Pgx/scene.splinecode">
-                        </spline-viewer>
-                    </div> -->
-                    <div style="background-color: aqua; width: 500px; height: 100vh;">
+            </div>
+
+            <div class="popup-section" id="kidneyStats">
+                <div style="font-size: 60px; margin-top: -15px;">
+                    <p style="font-weight: 550;">Kidney</p>
+                    <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                </div>
+                <div class="stats">
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/kindey_png-removebg-preview.png" alt="">
+                            <div class="readings">
+                                <h1>Kidney Health</h1>
+                                
+                            </div>
+                        </div>
+                        <div style="width: 130px; margin-top: -15px; margin-left: 20px;">
+                            <canvas id="pieChart3"></canvas>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Kidney MRI</h1>
+                                <span>Report</span>
+                            </div>
+                        </div>
+                        <img style="border-radius: 10px; width: 160px; margin-left: 15px;"
+                            src="../staticFolder/kidney.jpg" alt="">
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/uric-acid-3d.png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Uric Acid</h1>
+                                <span>6.4 mg/dL</span>
+                            </div>
+                        </div>
+                        <img style="margin-top: -35px;" src="../staticFolder/png-transparent-line-chart-multicolored-miscellaneous-infographic-angle-thumbnail-removebg-preview.png" alt="">
+                    </div>
+                </div>
+
+                <div
+                    style="display: flex; width: 700px; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <h1 style="font-size: 20px; font-weight: 600;">Kidney Statistics</h1>
+                        <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                    </div>
+                    <div class="stats">
+                        <div class="activity-card">
+                            <h3>eGFR</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_9" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">90</span>
+                                    <p>ml/min</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Serum Creatinine</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_10" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">1.02</span>
+                                    <p>mg/dL</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Urine ACR</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_11" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">18</span>
+                                    <p>mg/g</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup-section" id="brainStats">
+                <div style="font-size: 60px; margin-top: -15px;">
+                    <p style="font-weight: 550;">Brain</p>
+                    <p style="font-weight: 400; margin-top: -20px;">Conditions</p>
+                </div>
+                <div class="stats">
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/images__2_-removebg-preview (1).png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Brain MRI</h1>
+                                <span>Report</span>
+                            </div>
+                        </div>
+                        <img style="border-radius: 10px;"
+                            src="../staticFolder/heart-CT-scans-1296x728-header-1024x575.webp" alt="">
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/brain-icon-3.png" alt="">
+                            <div class="readings">
+                                <h1>Brain Health</h1>
+                                <span>in percentage</span>
+                            </div>
+                        </div>
+                        <div style="width: 140px; margin-top: -15px; margin-left: 20px;">
+                            <canvas id="pieChart2"></canvas>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="details">
+                            <img src="../staticFolder/ecg-heart-rate-f0t-removebg-preview (1).png" alt="heart-icon">
+                            <div class="readings">
+                                <h1>Dopamine</h1>
+                                <span>10g</span>
+                            </div>
+                        </div>
+                        <img style="margin-top: 5px;" src="../staticFolder/images-removebg-preview.png" alt="">
+                    </div>
+                </div>
+
+                <div
+                    style="display: flex; width: 700px; flex-direction: column; flex-wrap: wrap;gap: 15px; padding: 20px; border-width: 1px; border-style: solid; border-color: rgb(205, 205, 205); border-radius: 20px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <h1 style="font-size: 20px; font-weight: 600;">Brain Statistics</h1>
+                        <span style="font-size: 17px; color: rgb(163, 164, 165); font-weight: 400;">124</span>
+                    </div>
+                    <div class="stats">
+                        <div class="activity-card">
+                            <h3>Serotanin</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_6" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">50</span>
+                                    <p>mg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Fluid</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_7" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">1.5 L</span>
+                                    <p>mmHg</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="activity-card">
+                            <h3>Nitroglycerin</h3>
+                            <div class="progress-container">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring__background" cx="60" cy="60" r="54" />
+                                    <circle id="ring_8" class="progress-ring__circle" cx="60" cy="60" r="54" />
+                                </svg>
+                                <div class="step-count">
+                                    <span id="step-count">9</span>
+                                    <p>mm</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 350px; height: 260px;" class="stats-card">
+                            <div class="details">
+                                <div class="readings">
+                                    <h1>Monthly Progress</h1>
+                                    <span>60/80 mL per Beat</span>
+                                </div>
+                            </div>
+                            <div style="width: 320px; margin-top: -10px;">
+                                <canvas id="lineChart4"></canvas>
+                            </div>
+                        </div>
                         
                     </div>
                 </div>
             </div>
+
+
+
+            <div style="width: 500px;">
+                <div class="model">
+
+                    <spline-viewer url="https://prod.spline.design/97qRjzGnXUYth-w5/scene.splinecode"></spline-viewer>
+
+                </div>
+            </div>
+
         </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
-<script>
-    // Total and current step values
-    const totalSteps = 10000;
-    const currentSteps = 7324;
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+    <script>
 
-    // Calculate progress percentage
-    const progressCircle = document.querySelector('.progress-ring__circle');
-    const radius = progressCircle.r.baseVal.value;
-    const circumference = 2 * Math.PI * radius;
+        // 3D Model Code ////////////////////////////////////////////////////////////////////////
 
-    // Set circle properties
-    progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-    progressCircle.style.strokeDashoffset = circumference;
+        const splineViewer = document.querySelector('spline-viewer');
+        const statsBody = document.getElementById("bodyStats");
 
-    // Update progress dynamically
-    const stepPercentage = (currentSteps / totalSteps) * 100;
-    const offset = circumference - (stepPercentage / 100) * circumference;
-    progressCircle.style.strokeDashoffset = offset;
+        const statsSections = {
+            heartIcon: document.getElementById("heartStats"),
+            kidney: document.getElementById("kidneyStats"),
+            headIcon: document.getElementById("brainStats"),
+        };
+
+        const allSections = [statsBody, ...Object.values(statsSections)];
+
+        function showOnly(sectionToShow) {
+            allSections.forEach(section => {
+                if (section === sectionToShow) {
+                    section.style.display = 'flex';
+                    void section.offsetWidth;
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+
+                    setTimeout(() => {
+                        if (!section.classList.contains('visible')) {
+                            section.style.display = 'none';
+                        }
+                    }, 0);
+                }
+            });
+        }
 
 
-    const bar = document.getElementById('barChart');
-    // const pie = document.getElementById('pieChart');
-    const line = document.getElementById('lineChart');
-    const line2 = document.getElementById('lineChart2');
+        const icons = [
+            { name: "heartIcon", centerX: 1268, centerY: 255, radius: 20 },
+            { name: "kidney", centerX: 1212, centerY: 327, radius: 20 },
+            { name: "headIcon", centerX: 1194, centerY: 143, radius: 20 },
+        ];
 
-    const barData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-        label: 'Daily Calories Count',
-        data: [2000, 2100, 2050, 2101, 1990, 2500, 1945],
-        backgroundColor: [
-        'rgba(255, 99, 132)',
-        'rgba(255, 159, 64)',
-        'rgba(255, 205, 86)',
-        'rgba(75, 192, 192)',
-        'rgba(54, 162, 235)',
-        'rgba(153, 102, 255)',
-        'rgba(201, 203, 207)'
-        ],
-        borderColor: [
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
-        ],
-        borderWidth: 1,
-    }]
-    };
-    
-    new Chart(bar, {
-        type: 'bar',
-        data: barData,
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
+        function getClickedIcon(x, y) {
+            return icons.find(icon => {
+                const dx = x - icon.centerX;
+                const dy = y - icon.centerY;
+                return Math.sqrt(dx * dx + dy * dy) <= icon.radius;
+            });
+        }
+
+        splineViewer.addEventListener("click", (event) => {
+            const { clientX, clientY } = event;
+            const clicked = getClickedIcon(clientX, clientY);
+            const sectionToShow = clicked ? statsSections[clicked.name] : statsBody;
+            showOnly(sectionToShow);
+        });
+
+
+        showOnly(statsBody);
+
+
+
+
+        /// Activity circle Code //////////////////////////////////////////
+
+
+        function updateProgressCircle(circleId, currentValue, totalValue) {
+            const progressCircle = document.querySelector(`#${circleId}`); 
+            const radius = progressCircle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+
+            progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressCircle.style.strokeDashoffset = circumference;
+
+            const percentage = (currentValue / totalValue) * 100;
+            const offset = circumference - (percentage / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+
+        updateProgressCircle("ring_1", 7324, 10000);
+        updateProgressCircle("ring_3", 67, 100);
+        updateProgressCircle("ring_4", 75, 100);
+        updateProgressCircle("ring_5", 60, 100);
+        updateProgressCircle("ring_6", 85, 100);
+        updateProgressCircle("ring_7", 90, 100);
+        updateProgressCircle("ring_8", 80, 100);
+        updateProgressCircle("ring_9", 90, 100);
+        updateProgressCircle("ring_10", 95, 100);
+        updateProgressCircle("ring_11", 80, 100);
+
+
+        // Charts Code ///////////////////////////////////////////////////////////
+
+        function createChart(chartElementId, chartType, chartData, chartOptions = {}) {
+            const ctx = document.getElementById(chartElementId);
+            if (ctx) {
+                new Chart(ctx, {
+                    type: chartType,
+                    data: chartData,
+                    options: chartOptions
+                });
+            } else {
+                console.warn(`Chart element with ID "${chartElementId}" not found.`);
             }
         }
-        }
-    });
 
-    // const pieData = {
-    // labels: [
-    //     'Red',
-    //     'Blue',
-    //     'Yellow'
-    // ],
-    // datasets: [{
-    //     label: 'My First Dataset',
-    //     data: [300, 50, 100],
-    //     backgroundColor: [
-    //     'rgb(255, 99, 132)',
-    //     'rgb(54, 162, 235)',
-    //     'rgb(255, 205, 86)'
-    //     ],
-    //     hoverOffset: 10
-    // }]
-    // };
+        const barData = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Daily Calories Count',
+                data: [2000, 2100, 2050, 2101, 1990, 2500, 1945],
+                backgroundColor: [
+                    'rgba(255, 99, 132)',
+                    'rgba(255, 159, 64)',
+                    'rgba(255, 205, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(54, 162, 235)',
+                    'rgba(153, 102, 255)',
+                    'rgba(201, 203, 207)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1,
+            }]
+        };
 
-    // new Chart(pie, {
-    //     type: 'doughnut',
-    //     data: pieData,
-    // });
+        createChart('barChart', 'bar', barData, {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        });
 
-    const lineData = {
-    labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
-    datasets: [{
-        label: 'This Week',
-        data: [88, 87, 89, 90, 88, 89, 87],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-    }]
-    };
+        const lineData = {
+            labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
+            datasets: [{
+                label: 'This Week',
+                data: [88, 87, 89, 90, 88, 89, 87],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
 
-    const lineData2 = {
-    labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
-    datasets: [{
-        label: 'This Week',
-        data: [8.5, 7, 7.5, 6, 8, 7.5, 9],
-        fill: false,
-        borderColor: '#695cfe',
-        tension: 0.1
-    }]
-    };
+        const lineData2 = {
+            labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
+            datasets: [{
+                label: 'This Week',
+                data: [8.5, 7, 7.5, 6, 8, 7.5, 9],
+                fill: false,
+                borderColor: '#695cfe',
+                tension: 0.1
+            }]
+        };
 
-    new Chart(line, {
-        type: 'line',
-        data: lineData,
-    })
+        const lineData3 = {
+            labels: ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7'],
+            datasets: [{
+                label: 'This Week',
+                data: [78, 76, 81, 71, 69, 75, 79],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
 
-    new Chart(line2, {
-        type: 'line',
-        data: lineData2,
-    })
+        const lineData4 = {
+            labels: ['Nov', 'Dec', 'Jan', 'Feb', 'March', 'April'],
+            datasets: [{
+                label: 'This Week',
+                data: [80, 85, 75, 78, 86, 81],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
 
-</script>
+        createChart('lineChart', 'line', lineData);
+        createChart('lineChart2', 'line', lineData2);
+        createChart('lineChart3', 'line', lineData3);
+        createChart('lineChart4', 'line', lineData4);
 
-{% endblock %}
+        const pieData = {
+            datasets: [{
+                label: 'Heart Health',
+                data: [80, 20],
+                backgroundColor: [
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 10
+            }]
+        };
+
+        const pieData3 = {
+            datasets: [{
+                label: 'Kidney Health',
+                data: [90, 10],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 10
+            }]
+        };
+
+        const pieData2 = {
+            datasets: [{
+                label: 'Brain Health',
+                data: [80, 20],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 10,
+            }]
+        };
+
+        createChart('pieChart', 'doughnut', pieData);
+        createChart('pieChart2', 'doughnut', pieData2);
+        createChart('pieChart3', 'doughnut', pieData3);
+
+    </script>
+
+    {% endblock %}

@@ -10,7 +10,9 @@ from datetime import datetime
 from chatbot import chatbot
 from config import SECRET_KEY, connect, db, users_collection, medical_collection, client
 import os
-from cbc_daigonse import daigonse
+import pandas as pd
+from Analyzer import analyzer_main
+import json
 
 app = Flask(__name__, template_folder='templates', static_folder='staticFolder')
 app.secret_key = SECRET_KEY
@@ -127,22 +129,22 @@ def notification():
 @login_required
 def index():
     # Query the medical data for the current logged-in user
-    personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
+    # personal_data_list = PersonalData.objects(user=current_user.id).all()  # Get all medical data for the current user
 
     # Convert medical data into a list or array
-    personal_data_array = []
-    for data in personal_data_list:
-        personal_data_array.append({
-            'first_name': data.first_name,
-            'last_name': data.last_name,
-            'profession': data.profession,
-            'gender': data.gender,
-            'height': data.height,
-            'weight': data.weigth,
-        })
+    # personal_data_array = []
+    # for data in personal_data_list:
+    #     personal_data_array.append({
+    #         'first_name': data.first_name,
+    #         'last_name': data.last_name,
+    #         'profession': data.profession,
+    #         'gender': data.gender,
+    #         'height': data.height,
+    #         'weight': data.weigth,
+    #     })
 
     # Pass the medical data array to the template
-    return render_template('index.html', username=current_user.username, personal_data=personal_data_array)
+    return render_template('dashboard.html', username=current_user.username)
 
 @app.route('/dash')
 def dash():
@@ -155,29 +157,31 @@ def upload():
         cbc_file = request.files.get("cbc_report")
         xray_file = request.files.get("xray_report")
 
-        # file = request.files['file']
-
         if cbc_file and cbc_file.filename != "":
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], cbc_file.filename)
             cbc_file.save(file_path)
-            print(f"Attempting to save file to: {file_path}")
+            print(f"Attempting to save CBC file to: {file_path}")
 
-            model_output = model_output = daigonse(file_path)
-            return render_template('report.html', output = model_output)
+            analyzer_main(file_path)  # Generates output/Analysis.json
+            with open('output/Analysis.json', 'r') as f:
+                model_output = json.load(f)
+
+            return render_template('report.html', output=model_output)
 
         elif xray_file and xray_file.filename != "":
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], xray_file.filename)
             xray_file.save(file_path)
-            print(f"Attempting to save file to: {file_path}")
+            print(f"Attempting to save X-Ray file to: {file_path}")
 
-            model_output = model_output = daigonse(file_path)
-            return render_template('report.html', output = model_output)
+            analyzer_main(file_path)  # Generates output/Analysis.json
+            with open('output/Analysis.json', 'r') as f:
+                model_output = json.load(f)
+
+            return render_template('report.html', output=model_output)
 
         else:
-            # Call the model function with the file path
-            model_output = 'No file uploaded'
-            return render_template('report.html', output = model_output)
-    
+            return render_template('report.html', output="No file uploaded")
+
     return render_template('report.html')
 
 @app.route('/')
@@ -186,7 +190,50 @@ def home():
 
 @app.route('/drugs')
 def drugs():
-    return render_template('drugs.html')
+    df = pd.read_csv(r'data/diseases_2.xls')
+    df.drop('Unnamed: 0', axis=1, inplace=True)
+
+    Medicines = ['name', 'substitute0', 'substitute1', 'substitute2', 'substitute3', 'substitute4']
+    search_columns = Medicines + ['Therapeutic Class', 'Use_cases']
+
+    # Get parameters from the request
+    selected_letter = request.args.get("letter", "").lower()
+    page_number = int(request.args.get("page", 1))
+    search_term = request.args.get("search_term", "").strip()
+
+    # Apply letter filter if exists
+    if selected_letter:
+        filtered_df = df[df['name'].str.startswith(selected_letter, na=False)]
+    else:
+        filtered_df = df
+
+    # Search functionality
+    if search_term:
+        word = search_term.lower()
+        mask = pd.Series(False, index=filtered_df.index)
+        for col in search_columns:
+            if col in filtered_df.columns and filtered_df[col].dtype == 'object':
+                mask |= filtered_df[col].str.lower().str.contains(word, na=False)
+        search_results = filtered_df[mask]
+    else:
+        search_results = filtered_df
+
+    # Pagination logic
+    page_size = 15
+    total_results = len(search_results)
+    total_pages = (total_results // page_size) + (total_results % page_size > 0)
+    start_idx = (page_number - 1) * page_size
+    end_idx = min(start_idx + page_size, total_results)
+    paginated_results = search_results.iloc[start_idx:end_idx]
+    results_dict = paginated_results.to_dict(orient='records')
+
+    return render_template('drugs.html', 
+                           results=results_dict, 
+                           selected_letter=selected_letter,
+                           search_term=search_term,
+                           page_number=page_number, 
+                           total_pages=total_pages,
+                           total_results=total_results)
 
 @app.route('/global-data')
 def global_indicator():
@@ -219,7 +266,6 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
-
 @app.route('/profile', methods=["GET", "POST"])
 @login_required
 def profile():

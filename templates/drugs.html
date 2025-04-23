@@ -1,10 +1,127 @@
 {% extends "base.html" %}
 {% block content %}
+    
 
-<div class="main-container container">
-    <div class="w-full h-[100vh] flex items-center justify-center">
-        <iframe class="w-full h-[100vh]" src="https://medical-jhudgvfsu9tttgg5uugwxz.streamlit.app/?embedded=true" frameborder="0"></iframe>
+    <div class="main-container container">
+        <div class="durgs-section">
+            <div class="search-section">
+                <form action="/drugs" method="GET" class="search-form">
+                    <div class="search-wrapper">
+                        <input type="text" 
+                               id="search_term" 
+                               name="search_term" 
+                               value="{{ search_term }}"
+                               placeholder="Search for medicines, use cases, or therapeutic classes...">
+                        <button type="submit" class="search-button">Search</button>
+                    </div>
+                </form>
+            </div>
+    
+            <div class="content-wrapper">
+                <div class="alphabet-filter">
+                    <div class="filter-header">Filter by Letter</div>
+                    <div class="letters-grid">
+                        <a href="/" class="letter {% if not selected_letter %}active{% endif %}">All</a>
+                        {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+                            <a href="?letter={{ letter }}{% if search_term %}&search_term={{ search_term }}{% endif %}" 
+                               class="letter {% if selected_letter == letter %}active{% endif %}">
+                                {{ letter }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+    
+                <div class="results-section">
+                    {% if results %}
+                        <div class="results-header">
+                            <h2>Found {{ total_results }} results</h2>
+                            {% if selected_letter or search_term %}
+                                <div class="active-filters">
+                                    {% if selected_letter %}
+                                        <span class="filter-tag">Letter: {{ selected_letter }}</span>
+                                    {% endif %}
+                                    {% if search_term %}
+                                        <span class="filter-tag">Search: {{ search_term }}</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+    
+                        <div class="results-grid">
+                            {% for row in results %}
+                                <div class="result-card">
+                                    <div class="card-header">
+                                        <h3>{{ row['name'] }}</h3>
+                                        <span class="therapeutic-class">{{ row['Therapeutic Class'] }}</span>
+                                    </div>
+                                    
+                                    <div class="card-content">
+                                        <div class="info-group">
+                                            <label>Chemical Class:</label>
+                                            <span>{{ row['Chemical Class'] }}</span>
+                                        </div>
+                                        
+                                        <div class="info-group">
+                                            <label>Action Class:</label>
+                                            <span>{{ row['Action Class'] }}</span>
+                                        </div>
+    
+                                        <div class="info-group">
+                                            <label>Habit Forming:</label>
+                                            <span class="habit-forming {% if row['Habit Forming'] == 'Yes' %}warning{% endif %}">
+                                                {{ row['Habit Forming'] }}
+                                            </span>
+                                        </div>
+    
+                                        <div class="info-group">
+                                            <label>Use Cases:</label>
+                                            <p class="use-cases">{{ row['Use_cases'] }}</p>
+                                        </div>
+    
+                                        <div class="info-group">
+                                            <label>Side Effects:</label>
+                                            <p class="side-effects">{{ row['Side_Effects'] }}</p>
+                                        </div>
+    
+                                        <div class="substitutes">
+                                            <label>Substitutes:</label>
+                                            <ul>
+                                                {% for i in range(5) %}
+                                                    {% if row['substitute' ~ i] %}
+                                                        <li>{{ row['substitute' ~ i] }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+    
+                        {% if total_pages > 1 %}
+                            <div class="pagination">
+                                {% if page_number > 1 %}
+                                    <a href="?page={{ page_number - 1 }}{% if selected_letter %}&letter={{ selected_letter }}{% endif %}{% if search_term %}&search_term={{ search_term }}{% endif %}" 
+                                       class="page-link">Previous</a>
+                                {% endif %}
+                                
+                                <span class="page-info">Page {{ page_number }} of {{ total_pages }}</span>
+                                
+                                {% if page_number < total_pages %}
+                                    <a href="?page={{ page_number + 1 }}{% if selected_letter %}&letter={{ selected_letter }}{% endif %}{% if search_term %}&search_term={{ search_term }}{% endif %}" 
+                                       class="page-link">Next</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="no-results">
+                            <h2>No results found</h2>
+                            <p>Try adjusting your search terms or filters</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 {% endblock %}
